@@ -1,0 +1,14 @@
+# FMOD Studio cache and build folders
+*.cache/
+Build/
+Desktop/
+Mobile/
+Web/
+
+# Generated banks (generate them outside version control)
+*.bank
+*.fspro.user
+*.xml
+*.json
+*.wav
+*.aiff

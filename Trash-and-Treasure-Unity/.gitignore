@@ -13,14 +13,17 @@
 *.log
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
+
 *.blend1
 *.blend1.meta
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
+
 /[Mm]emoryCaptures/
 
 # Recordings can get excessive in size
+
 /[Rr]ecordings/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
@@ -103,12 +106,12 @@ InitTestScene*.unity*
 Assets/Plugins/FMOD/Resources/FMO
 DStudioCache.asset
 Assets/StreamingAssets/*.bank
-fmod_editor.log
 
 # Never ignore DLLs in the FMOD subfolder.
 !/[Aa]ssets/Plugins/FMOD/**/lib/*
 
 # Don't ignore images and gizmos used by FMOD in the Unity Editor.
+
 !/[Aa]ssets/Gizmos/FMOD/*
 !/[Aa]ssets/Editor Default Resources/FMOD/*
 
@@ -116,9 +119,19 @@ fmod_editor.log
 /[Aa]ssets/Plugins/FMOD/Cache/*
 
 # Ignore bank files in the StreamingAssets folder.
+
 /[Aa]ssets/StreamingAssets/**/*.bank
 /[Aa]ssets/StreamingAssets/**/*.bank.meta
 
+# Ignore the Cache-file since it is updated locally either way
+
+/[Aa]ssets/**/FMODStudioCache.asset
+/[Aa]ssets/**/FMODStudioCache.asset.meta
+/[Aa]ssets/Plugins/FMOD/Cache.meta
+/[Aa]ssets/Plugins/FMOD/Cache/Editor.meta
+
 # If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
 # Log files can be ignored.
+
+fmod.log
 fmod_editor.log

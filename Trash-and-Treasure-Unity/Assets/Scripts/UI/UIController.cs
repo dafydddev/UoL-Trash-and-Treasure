@@ -3,44 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    public enum UIState
-    {
-        MainMenu,
-        Gameplay
-    }
-
-    [Header("State")]
-    [SerializeField] private UIState currentState;
-
-    [Header("Main Menu Panels")]
-    [SerializeField] private GameObject[] mainMenuPanels;
-    [SerializeField] private GameObject mainMenuDefault;
-
-    [Header("Gameplay Panels")]
-    [SerializeField] private GameObject[] gameplayPanels;
-    [SerializeField] private GameObject gameplayDefault;
-
+    [Header("Menu Panels")]
+    [SerializeField] private GameObject[] menuPanels;
+    [SerializeField] private GameObject defaultPanel;
     private GameObject currentPanel;
-    private static UIController instance;
+
+    [Header("Unity Scenes")]
+    [SerializeField] private SceneReference mainMenuScene;
+    [SerializeField] private SceneReference gameplayScene;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDestroy()
     {
-        if (instance == this)
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene _, LoadSceneMode __)
@@ -48,64 +27,66 @@ public class UIController : MonoBehaviour
         UpdateUI();
     }
 
-    public void SetState(UIState newState)
+    private void LoadScene(SceneReference sceneRef)
     {
-        if (currentState == newState)
+        if (sceneRef == null || string.IsNullOrEmpty(sceneRef.SceneName))
+        {
+            Debug.LogError("SceneReference is null or missing name.");
             return;
+        }
+        SceneManager.LoadScene(sceneRef.SceneName);
+    }
 
-        currentState = newState;
-        currentPanel = null;
-        UpdateUI();
+    public void LoadMainMenu()
+    {
+        LoadScene(mainMenuScene);
+    }
+
+    public void LoadGameplay()
+    {
+        LoadScene(gameplayScene);
     }
 
     private void UpdateUI()
     {
         HideAll();
-
-        GameObject[] set = GetCurrentSet();
-        GameObject defaultPanel = GetDefaultForCurrentState();
-
-        if (defaultPanel != null)
+        if (menuPanels == null || menuPanels.Length == 0)
         {
-            ShowPanel(defaultPanel);
+            Debug.LogWarning("No menu panels registered.");
+            return;
         }
+        ShowPanel(defaultPanel);
     }
 
     public void ShowPanel(GameObject panel)
     {
         if (panel == null || panel == currentPanel)
+        {
             return;
-
+        }
         HideAll();
-
         panel.SetActive(true);
         currentPanel = panel;
     }
 
     private void HideAll()
     {
-        SetActive(mainMenuPanels, false);
-        SetActive(gameplayPanels, false);
+        SetAllPanels(menuPanels, false);
         currentPanel = null;
     }
 
-    private GameObject[] GetCurrentSet()
+    private static void SetAllPanels(GameObject[] panels, bool active)
     {
-        return currentState == UIState.MainMenu ? mainMenuPanels : gameplayPanels;
-    }
-
-    private GameObject GetDefaultForCurrentState()
-    {
-        return currentState == UIState.MainMenu ? mainMenuDefault : gameplayDefault;
-    }
-
-    private static void SetActive(GameObject[] panels, bool active)
-    {
-        if (panels == null) return;
-        foreach (var panel in panels)
+        if (panels == null)
         {
-            if (panel != null)
-                panel.SetActive(active);
+            return;
         }
+        foreach (var panel in panels)
+            {
+                if (panel != null)
+                {
+                    panel.SetActive(active);
+                }
+            }
     }
 }

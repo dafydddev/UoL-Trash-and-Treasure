@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     [Header("Menu Panels")]
-    [SerializeField] private GameObject[] menuPanels;
-    [SerializeField] private GameObject defaultPanel;
-    private GameObject currentPanel;
+    [SerializeField] private UIPanel[] _menuPanels;
+    [SerializeField] private UIPanel _defaultPanel;
+    private UIPanel _currentPanel;
 
     [Header("Unity Scenes")]
-    [SerializeField] private SceneReference mainMenuScene;
-    [SerializeField] private SceneReference gameplayScene;
+    [SerializeField] private SceneReference _nextScene;
+    [SerializeField] private SceneReference _previousScene;
 
     private void Awake()
     {
@@ -24,7 +24,27 @@ public class UIController : MonoBehaviour
 
     private void OnSceneLoaded(Scene _, LoadSceneMode __)
     {
-        UpdateUI();
+        UpdateUI(_defaultPanel);
+    }
+
+    public void NextScene()
+    { 
+        if (_nextScene == null)
+        {
+            Debug.LogError("Next scene reference is not set.");
+            return;
+        }
+        LoadScene(_nextScene);
+    }
+
+    public void PreviousScene()
+    {
+        if (_previousScene == null)
+        {
+            Debug.LogError("Previous scene reference is not set.");
+            return;
+        }
+        LoadScene(_previousScene);
     }
 
     private void LoadScene(SceneReference sceneRef)
@@ -37,55 +57,39 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene(sceneRef.SceneName);
     }
 
-    public void LoadMainMenu()
-    {
-        LoadScene(mainMenuScene);
-    }
-
-    public void LoadGameplay()
-    {
-        LoadScene(gameplayScene);
-    }
-
-    private void UpdateUI()
+    private void UpdateUI(UIPanel panel)
     {
         HideAll();
-        if (menuPanels == null || menuPanels.Length == 0)
+        if (_menuPanels == null || _menuPanels.Length == 0)
         {
             Debug.LogWarning("No menu panels registered.");
             return;
         }
-        ShowPanel(defaultPanel);
+        ShowPanel(panel);
     }
 
-    public void ShowPanel(GameObject panel)
+    public void ShowPanel(UIPanel panel)
     {
-        if (panel == null || panel == currentPanel)
+        if (panel == null || panel == _currentPanel)
         {
             return;
         }
         HideAll();
         panel.SetActive(true);
-        currentPanel = panel;
+        _currentPanel = panel;
     }
 
     private void HideAll()
     {
-        SetAllPanels(menuPanels, false);
-        currentPanel = null;
-    }
-
-    private static void SetAllPanels(GameObject[] panels, bool active)
-    {
-        if (panels == null)
+        if (_menuPanels == null)
         {
             return;
         }
-        foreach (var panel in panels)
+        foreach (var panel in _menuPanels)
             {
                 if (panel != null)
                 {
-                    panel.SetActive(active);
+                    panel.SetActive(false);
                 }
             }
     }

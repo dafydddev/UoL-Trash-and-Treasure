@@ -232,6 +232,9 @@ MonoBehaviour:
   _nextScene:
     sceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
     sceneName: MainMenu
+  _previousScene:
+    sceneAsset: {fileID: 0}
+    sceneName: 
 --- !u!1 &726550364
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,7 +36,6 @@ public class AudioManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(busPath))
         {
-            Debug.LogError("Bus path is null or empty.");
             return;
         }
         Bus bus = RuntimeManager.GetBus(busPath);
@@ -54,5 +53,11 @@ public class AudioManager : MonoBehaviour
     public void SetBackgroundMusicVolume(float volume)
     {
         SetBusVolume("bus:/BackgroundMusic", volume);
+    }
+    
+    // Set the volume for the SFX bus
+    public void SetSFXVolume(float volume)
+    {
+        SetBusVolume("bus:/SFX", volume);
     }
 }

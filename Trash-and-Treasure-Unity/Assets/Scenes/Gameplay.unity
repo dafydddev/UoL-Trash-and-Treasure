@@ -997,6 +997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 821716925}
   - component: {fileID: 821716926}
+  - component: {fileID: 821716927}
   m_Layer: 5
   m_Name: BGMVolumeSlider
   m_TagString: Untagged
@@ -1077,6 +1078,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &821716927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821716924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139d56c22833349db9adf4f3695af89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  busType: 1
+  slider: {fileID: 821716926}
 --- !u!1 &827859144
 GameObject:
   m_ObjectHideFlags: 0
@@ -3583,6 +3598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911679698}
   - component: {fileID: 1911679699}
+  - component: {fileID: 1911679700}
   m_Layer: 5
   m_Name: SFXVolumeSlider
   m_TagString: Untagged
@@ -3663,6 +3679,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1911679700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911679697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139d56c22833349db9adf4f3695af89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  busType: 2
+  slider: {fileID: 1911679699}
 --- !u!1 &1977561883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,6 +4141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2075682084}
   - component: {fileID: 2075682085}
+  - component: {fileID: 2075682086}
   m_Layer: 5
   m_Name: MasterVolumeSlider
   m_TagString: Untagged
@@ -4191,6 +4222,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2075682086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075682083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139d56c22833349db9adf4f3695af89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  busType: 0
+  slider: {fileID: 2075682085}
 --- !u!1 &2109364630
 GameObject:
   m_ObjectHideFlags: 0

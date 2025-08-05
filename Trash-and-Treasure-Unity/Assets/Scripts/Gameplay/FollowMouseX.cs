@@ -14,35 +14,35 @@ public class FollowMouseX : MonoBehaviour
     [SerializeField] 
     private SpriteRenderer spriteRend;
 
-    private Camera cam;
-    private Vector3 spritePosition; 
-    private Vector3 mouseInWorldSpacePosition;
+    private Camera _cam;
+    private Vector3 _currentPosition; 
+    private Vector3 _mouseInWorldSpacePosition;
 
 	private const float LEFT_EDGE = -300f;
 	private const float RIGHT_EDGE = 300f; 
 
-    void Start()
+    private void Start()
     {
-        cam = Camera.main;
+        _cam = Camera.main;
     }
 
-    void Update()
+    private void Update()
     {
         // Get mouse x position in world space 
-		Vector3 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition); 
+		Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition); 
 		float mouseX = mouseWorldPos.x;
         
         // Get current sprite position
-        spritePosition = transform.position;
+        _currentPosition = transform.position;
         
         // Handle sprite flipping based on direction to mouse
-        if (spriteRend != null)
+        if (spriteRend)
         {	
-			spriteRend.flipX = mouseX < spritePosition.x;
+			spriteRend.flipX = mouseX < _currentPosition.x;
         }
         
         // Calculate distance to mouse on X-axis only
-        float currentDistanceToMouseX = Mathf.Abs(spritePosition.x - mouseX);
+        float currentDistanceToMouseX = Mathf.Abs(_currentPosition.x - mouseX);
         
         // ONLY move if distance exceeds threshold
         if (currentDistanceToMouseX > bufferZoneFromMouse) 
@@ -50,11 +50,11 @@ public class FollowMouseX : MonoBehaviour
         	// Calculate acceleration based on distance - further = faster, closer = slower 
 			float t = (currentDistanceToMouseX - bufferZoneFromMouse) / rampUpDistance;
 			t = Mathf.Clamp01(t);
-			float currentSpeed = Mathf.Lerp(0, maxSpeed, t) * Time.deltaTime;
+			float speed = Mathf.Lerp(0, maxSpeed, t) * Time.deltaTime;
             // Move towards the exact mouse X position using MoveTowards, keeping Y and Z unchanged
-            float desiredX = Mathf.MoveTowards(spritePosition.x, mouseX, currentSpeed);
+            float desiredX = Mathf.MoveTowards(_currentPosition.x, mouseX, speed);
 			float newX = Mathf.Clamp(desiredX, LEFT_EDGE, RIGHT_EDGE);
-            transform.position = new Vector3(newX, spritePosition.y, spritePosition.z);
-        }
+            transform.position = new Vector3(newX, _currentPosition.y, _currentPosition.z);
+		}
     }
 }

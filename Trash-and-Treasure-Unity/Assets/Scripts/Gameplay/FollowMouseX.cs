@@ -28,7 +28,12 @@ public class FollowMouseX : MonoBehaviour
 
     private void Update()
     {
-        // Get mouse x position in world space 
+	    if (Time.timeScale <= 0f)
+	    {
+		    return;
+	    }
+
+	    // Get mouse x position in world space 
 		Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition); 
 		float mouseX = mouseWorldPos.x;
         

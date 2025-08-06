@@ -1,63 +1,66 @@
-using UnityEngine;
-using FMODUnity;
 using FMOD.Studio;
+using FMODUnity;
+using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace Audio
 {
-    public static AudioManager Instance { get; private set; }
-
-    private void Awake()
+    public class AudioManager : MonoBehaviour
     {
-        if (Instance == null)
+        public static AudioManager Instance { get; private set; }
+
+        private void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
+
+        // Play a one-shot sound effect, useful for UI interactions or short sound effects
+        public void PlayOneShot(string eventPath)
         {
-            Destroy(gameObject);
+            RuntimeManager.PlayOneShot(eventPath);
         }
-    }
 
-    // Play a one-shot sound effect, useful for UI interactions or short sound effects
-    public void PlayOneShot(string eventPath)
-    {
-        RuntimeManager.PlayOneShot(eventPath);
-    }
-
-    // Play sound at a specific position, useful for placing sounds in the world
-    public void PlayOneShotAttached(string eventPath, GameObject gameObject)
-    {
-        RuntimeManager.PlayOneShotAttached(eventPath, gameObject);
-    }
-
-    // Set the volume for a specific bus
-    public void SetBusVolume(string busPath, float volume)
-    {
-        if (string.IsNullOrEmpty(busPath))
+        // Play sound at a specific position, useful for placing sounds in the world
+        public void PlayOneShotAttached(string eventPath, GameObject gameObject)
         {
-            return;
+            RuntimeManager.PlayOneShotAttached(eventPath, gameObject);
         }
-        Bus bus = RuntimeManager.GetBus(busPath);
-        bus.setVolume(volume);
-    }
 
-    // Set the volume for the master bus
-    public void SetMasterVolume(float volume)
-    {
-        SetBusVolume("bus:/", volume);
+        // Set the volume for a specific bus
+        public void SetBusVolume(string busPath, float volume)
+        {
+            if (string.IsNullOrEmpty(busPath))
+            {
+                return;
+            }
+            Bus bus = RuntimeManager.GetBus(busPath);
+            bus.setVolume(volume);
+        }
 
-    }
+        // Set the volume for the master bus
+        public void SetMasterVolume(float volume)
+        {
+            SetBusVolume("bus:/", volume);
 
-    // Set the volume for the background music bus
-    public void SetBackgroundMusicVolume(float volume)
-    {
-        SetBusVolume("bus:/BackgroundMusic", volume);
-    }
+        }
+
+        // Set the volume for the background music bus
+        public void SetBackgroundMusicVolume(float volume)
+        {
+            SetBusVolume("bus:/BackgroundMusic", volume);
+        }
     
-    // Set the volume for the SFX bus
-    public void SetSFXVolume(float volume)
-    {
-        SetBusVolume("bus:/SFX", volume);
+        // Set the volume for the SFX bus
+        public void SetSFXVolume(float volume)
+        {
+            SetBusVolume("bus:/SFX", volume);
+        }
     }
 }

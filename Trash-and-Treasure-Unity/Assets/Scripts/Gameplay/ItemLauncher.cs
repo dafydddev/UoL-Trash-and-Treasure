@@ -7,7 +7,6 @@ public class ItemLauncher : MonoBehaviour
     public float maxPullDistance = 3f;
     
     [Header("Visual Feedback")]
-    public LineRenderer trajectoryLine;
     public GameObject aimIndicator;
     
     private Rigidbody2D rb2d;
@@ -27,22 +26,6 @@ public class ItemLauncher : MonoBehaviour
         
         cam = Camera.main;
         
-        // Create trajectory line if not assigned
-        if (trajectoryLine == null)
-        {
-            GameObject lineObj = new GameObject("TrajectoryLine");
-            trajectoryLine = lineObj.AddComponent<LineRenderer>();
-            trajectoryLine.material = new Material(Shader.Find("Sprites/Default"));
-            trajectoryLine.startColor = Color.red;
-            trajectoryLine.endColor = Color.red;
-            trajectoryLine.startWidth = 0.1f;
-            trajectoryLine.endWidth = 0.1f;
-            trajectoryLine.positionCount = 2;
-            trajectoryLine.enabled = false;
-            trajectoryLine.useWorldSpace = true;
-        }
-        
-        // Create aim indicator if not assigned
         if (aimIndicator == null)
         {
             aimIndicator = new GameObject("AimIndicator");
@@ -124,10 +107,7 @@ public class ItemLauncher : MonoBehaviour
         rb2d.angularVelocity = 0f;
         
         // Enable visual feedback
-        trajectoryLine.enabled = true;
         aimIndicator.SetActive(true);
-        
-        Debug.Log("Started dragging sprite");
     }
     
     void UpdateVisualFeedback()
@@ -143,17 +123,12 @@ public class ItemLauncher : MonoBehaviour
         // Update trajectory line (showing launch direction)
         Vector3 endPoint = startPosition + (Vector3)(pullDirection * pullDistance);
         
-        trajectoryLine.SetPosition(0, startPosition);
-        trajectoryLine.SetPosition(1, endPoint);
-        
         // Update aim indicator
         aimIndicator.transform.position = endPoint;
         
         // Update line color based on power
         float powerRatio = pullDistance / maxPullDistance;
         Color lineColor = Color.Lerp(Color.yellow, Color.red, powerRatio);
-        trajectoryLine.startColor = lineColor;
-        trajectoryLine.endColor = lineColor;
     }
     
     void Launch()
@@ -172,10 +147,7 @@ public class ItemLauncher : MonoBehaviour
         
         // Clean up
         isDragging = false;
-        trajectoryLine.enabled = false;
         aimIndicator.SetActive(false);
-        
-        Debug.Log($"Launched 2D sprite with force: {forceMultiplier}, Direction: {launchDirection}");
     }
     
     void OnDrawGizmos()

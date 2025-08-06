@@ -1,34 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Canvas))]
-[RequireComponent(typeof(CanvasScaler))]
-[RequireComponent(typeof(GraphicRaycaster))]
-public class UIPanel : MonoBehaviour
+namespace UI
 {
-    private static readonly Vector2 STANDARD_RESOLUTION = new Vector2(640, 360);
-
-    [SerializeField] private Button firstButton;
-
-    private void Reset()
+    [RequireComponent(typeof(Canvas))]
+    [RequireComponent(typeof(CanvasScaler))]
+    [RequireComponent(typeof(GraphicRaycaster))]
+    public class UIPanel : MonoBehaviour
     {
-        SetupCanvas();
-    }
+        private static readonly Vector2 STANDARD_RESOLUTION = new Vector2(640, 360);
 
-    private void SetupCanvas()
-    {
-        gameObject.layer = LayerMask.NameToLayer("UI");
-        Canvas canvas = GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        CanvasScaler scaler = GetComponent<CanvasScaler>();
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = STANDARD_RESOLUTION;
-        scaler.matchWidthOrHeight = 0.5f;
+        [SerializeField] private Button firstButton;
 
-    }
+        private void Reset()
+        {
+            SetupCanvas();
+        }
+
+        private void SetupCanvas()
+        {
+            gameObject.layer = LayerMask.NameToLayer("UI");
+            Canvas canvas = GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            CanvasScaler scaler = GetComponent<CanvasScaler>();
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = STANDARD_RESOLUTION;
+            scaler.matchWidthOrHeight = 0.5f;
+
+        }
     
-    public void SetActive(bool isActive)
-    {
-        gameObject.SetActive(isActive);
+        public void SetActive(bool isActive)
+        {
+            gameObject.SetActive(isActive);
+        }
     }
 }

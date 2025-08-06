@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class UIAnimationEvent : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private UIController uiController;
-
-    // Called by Animation Event
-    public void OnTextAnimationComplete()
+    public class UIAnimationEvent : MonoBehaviour
     {
-        uiController.NextScene();
+        [SerializeField] private UIController uiController;
+
+        // Called by Animation Event
+        public void OnTextAnimationComplete()
+        {
+            uiController.NextScene();
+        }
     }
 }

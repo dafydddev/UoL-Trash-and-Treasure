@@ -7,21 +7,18 @@ namespace UI
     public class UIController : MonoBehaviour
     {
         [Header("Menu Panels")] [SerializeField]
-        private UIPanel[] _menuPanels;
+        private UIPanel[] menuPanels;
 
-        [SerializeField] 
-        private UIPanel _defaultPanel;
-        [SerializeField] 
-        private UIPanel _pausePanel;
+        [SerializeField] private UIPanel defaultPanel;
+        [SerializeField] private UIPanel pausePanel;
 
         private UIPanel _currentPanel;
-        
-        [Header("Unity Scenes")] [SerializeField]
-        private SceneReference _nextScene;
 
-        [SerializeField] 
-        private SceneReference _previousScene;
-        
+        [Header("Unity Scenes")] [SerializeField]
+        private SceneReference nextScene;
+
+        [SerializeField] private SceneReference previousScene;
+
         private void Awake()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -41,37 +38,42 @@ namespace UI
 
         private void HandlePause(bool isPaused)
         {
-            UpdateUI(isPaused ? _pausePanel : _defaultPanel);
+            UpdateUI(isPaused ? pausePanel : defaultPanel);
         }
 
         private void OnSceneLoaded(Scene _, LoadSceneMode __)
         {
-            UpdateUI(_defaultPanel);
+            UpdateUI(defaultPanel);
         }
 
         public void NextScene()
         {
-            if (_nextScene == null)
+            if (nextScene == null)
             {
                 Debug.LogError("Next scene reference is not set.");
                 return;
             }
 
-            LoadScene(_nextScene);
+            LoadSceneByReference(nextScene);
         }
 
         public void PreviousScene()
         {
-            if (_previousScene == null)
+            if (previousScene == null)
             {
                 Debug.LogError("Previous scene reference is not set.");
                 return;
             }
 
-            LoadScene(_previousScene);
+            LoadSceneByReference(previousScene);
         }
 
-        private void LoadScene(SceneReference sceneRef)
+        public void LoadSceneByName(string sceneName)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+
+        private static void LoadSceneByReference(SceneReference sceneRef)
         {
             if (sceneRef == null || string.IsNullOrEmpty(sceneRef.SceneName))
             {
@@ -85,7 +87,7 @@ namespace UI
         private void UpdateUI(UIPanel panel)
         {
             HideAll();
-            if (_menuPanels == null || _menuPanels.Length == 0)
+            if (menuPanels == null || menuPanels.Length == 0)
             {
                 return;
             }
@@ -99,7 +101,7 @@ namespace UI
             {
                 return;
             }
-            
+
             HideAll();
             panel.SetActive(true);
             _currentPanel = panel;
@@ -107,12 +109,12 @@ namespace UI
 
         private void HideAll()
         {
-            if (_menuPanels == null)
+            if (menuPanels == null)
             {
                 return;
             }
 
-            foreach (var panel in _menuPanels)
+            foreach (var panel in menuPanels)
             {
                 if (panel)
                 {

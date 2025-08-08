@@ -571,17 +571,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8bfe299b488471eb90c3ee81e5cf3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuPanels:
+  menuPanels:
   - {fileID: 377246677}
   - {fileID: 49058533}
   - {fileID: 1639818223}
   - {fileID: 1372521673}
-  _defaultPanel: {fileID: 377246677}
-  _pausePanel: {fileID: 49058533}
-  _nextScene:
+  defaultPanel: {fileID: 377246677}
+  pausePanel: {fileID: 49058533}
+  nextScene:
     sceneAsset: {fileID: 0}
     sceneName: 
-  _previousScene:
+  previousScene:
     sceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
     sceneName: MainMenu
 --- !u!4 &127335847

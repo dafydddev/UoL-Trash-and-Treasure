@@ -30,7 +30,7 @@ namespace Gameplay
 
         private void Update()
         {
-            if (GameEvents.IsPaused)
+            if (GameEvents.GetIsPaused())
             {
                 return;
             }

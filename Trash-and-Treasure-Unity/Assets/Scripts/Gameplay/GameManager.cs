@@ -36,19 +36,20 @@ namespace Gameplay
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                GameEvents.OnPauseToggled?.Invoke(!GameEvents.IsPaused);
+                bool newPauseState = !GameEvents.GetIsPaused();
+                GameEvents.OnPauseToggled?.Invoke(newPauseState);
             }
         }
         
         private void HandlePause(bool isPaused)
         {
             Time.timeScale = isPaused ? 0f : 1f; 
-            GameEvents.IsPaused = isPaused;
+            GameEvents.SetIsPaused(isPaused);
         }
 
         private void OnSceneLoaded(Scene _, LoadSceneMode __)
         {
-            GameEvents.IsPaused = false;
+            GameEvents.SetIsPaused(false);
             Time.timeScale = 1f;
             sceneTransitionAnimator.SetTrigger(_fadeInTrigger);
         }

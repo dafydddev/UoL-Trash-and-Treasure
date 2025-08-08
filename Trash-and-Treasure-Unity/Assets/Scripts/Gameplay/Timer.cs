@@ -25,7 +25,10 @@ namespace Gameplay
 
         private void Update()
         {
-            if (!(_time > endTime) || GameEvents.IsPaused) return;
+            if (!(_time > endTime) || GameEvents.GetIsPaused())
+            {
+                return;
+            }
             _time -= Time.deltaTime;
             _timerText.text = _time.ToString("0");
         }

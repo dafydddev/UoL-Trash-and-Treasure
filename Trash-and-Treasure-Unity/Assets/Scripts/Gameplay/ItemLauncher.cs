@@ -30,39 +30,14 @@ namespace Gameplay
 
             GameEvents.OnPauseToggled += HandlePause;
 
-
-            // if (aimIndicator == null)
-            // {
-            //     aimIndicator = new GameObject("AimIndicator");
-            //     SpriteRenderer sr = aimIndicator.AddComponent<SpriteRenderer>();
-            //
-            //     // Create a simple circle texture
-            //     Texture2D texture = new Texture2D(32, 32);
-            //     Color[] colors = new Color[32 * 32];
-            //     Vector2 center = new Vector2(16, 16);
-            //
-            //     for (int x = 0; x < 32; x++)
-            //     {
-            //         for (int y = 0; y < 32; y++)
-            //         {
-            //             float distance = Vector2.Distance(new Vector2(x, y), center);
-            //             colors[y * 32 + x] = distance < 12 ? Color.yellow : Color.clear;
-            //         }
-            //     }
-            //
-            //     texture.SetPixels(colors);
-            //     texture.Apply();
-            //
-            //     Sprite sprite = Sprite.Create(texture, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 100);
-            //     sr.sprite = sprite;
             aimIndicator.transform.localScale = Vector3.one * 0.3f;
             aimIndicator.SetActive(false);
-            // }
+
         }
 
         private void Update()
         {
-            if (GameEvents.IsPaused)
+            if (GameEvents.GetIsPaused())
             {
                 return;
             }

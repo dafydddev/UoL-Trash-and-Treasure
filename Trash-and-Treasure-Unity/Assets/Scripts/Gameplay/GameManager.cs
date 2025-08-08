@@ -7,6 +7,10 @@ namespace Gameplay
     {
         private static GameManager _instance;
         
+        [SerializeField]
+        private Animator sceneTransitionAnimator;
+        private readonly string _fadeInTrigger = "FadeIn";
+        
         private void Awake()
         {
             if (_instance == null)
@@ -18,13 +22,13 @@ namespace Gameplay
             {
                 Destroy(gameObject);
             }
-            GameEvents.OnPauseChanged += HandlePause;
+            GameEvents.OnPauseToggled += HandlePause;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         
         private void OnDestroy()
         {
-            GameEvents.OnPauseChanged -= HandlePause;
+            GameEvents.OnPauseToggled -= HandlePause;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
         
@@ -32,20 +36,21 @@ namespace Gameplay
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                GameEvents.OnPauseChanged?.Invoke(!GameEvents.IsPaused);
+                GameEvents.OnPauseToggled?.Invoke(!GameEvents.IsPaused);
             }
         }
         
         private void HandlePause(bool isPaused)
         {
-            Time.timeScale = isPaused ? 0f : 1f;
-            GameEvents.IsPaused = !GameEvents.IsPaused;
+            Time.timeScale = isPaused ? 0f : 1f; 
+            GameEvents.IsPaused = isPaused;
         }
 
         private void OnSceneLoaded(Scene _, LoadSceneMode __)
         {
             GameEvents.IsPaused = false;
             Time.timeScale = 1f;
+            sceneTransitionAnimator.SetTrigger(_fadeInTrigger);
         }
     }
 }

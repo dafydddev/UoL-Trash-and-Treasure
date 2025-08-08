@@ -27,18 +27,18 @@ namespace UI
         private void Awake()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
-            GameEvents.OnPauseChanged += HandlePause;
+            GameEvents.OnPauseToggled += HandlePause;
         }
 
         private void OnDestroy()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            GameEvents.OnPauseChanged -= HandlePause;
+            GameEvents.OnPauseToggled -= HandlePause;
         }
 
         public void PauseGame(bool shouldPause)
         {
-            GameEvents.OnPauseChanged?.Invoke(shouldPause);
+            GameEvents.OnPauseToggled?.Invoke(shouldPause);
         }
 
         private void HandlePause(bool isPaused)

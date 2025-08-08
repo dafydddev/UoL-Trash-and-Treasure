@@ -22,8 +22,6 @@ namespace UI
         [SerializeField] 
         private SceneReference _previousScene;
         
-        private bool _isPaused = false;
-
         private void Awake()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;

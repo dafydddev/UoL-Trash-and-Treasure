@@ -163,14 +163,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8bfe299b488471eb90c3ee81e5cf3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuPanels:
+  menuPanels:
   - {fileID: 1058173770}
-  _defaultPanel: {fileID: 1058173770}
-  _pausePanel: {fileID: 0}
-  _nextScene:
+  defaultPanel: {fileID: 1058173770}
+  pausePanel: {fileID: 0}
+  nextScene:
     sceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
     sceneName: MainMenu
-  _previousScene:
+  previousScene:
     sceneAsset: {fileID: 0}
     sceneName: 
 --- !u!1 &726550364

@@ -28,7 +28,7 @@ namespace Gameplay
             _collider2d = GetComponent<Collider2D>();
             _cam = Camera.main;
 
-            GameEvents.OnPauseChanged += HandlePause;
+            GameEvents.OnPauseToggled += HandlePause;
 
 
             // if (aimIndicator == null)

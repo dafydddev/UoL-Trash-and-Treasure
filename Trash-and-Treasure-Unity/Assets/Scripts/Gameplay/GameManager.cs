@@ -5,11 +5,11 @@ namespace Gameplay
 {
     public class GameManager : MonoBehaviour
     {
-        private static GameManager _instance;
-        
+        private static GameManager _instance; 
+        private static readonly int FadeIn = Animator.StringToHash(FadeInTrigger);
+        private const string FadeInTrigger = "FadeIn";
         [SerializeField]
         private Animator sceneTransitionAnimator;
-        private readonly string _fadeInTrigger = "FadeIn";
         
         private void Awake()
         {
@@ -22,12 +22,16 @@ namespace Gameplay
             {
                 Destroy(gameObject);
             }
+
+            GameEvents.OnScoreChanged += HandleScore;
+            GameEvents.OnLiveLost += HandleLiveLost;
             GameEvents.OnPauseToggled += HandlePause;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         
         private void OnDestroy()
         {
+            GameEvents.OnScoreChanged -= HandleScore;
             GameEvents.OnPauseToggled -= HandlePause;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
@@ -41,17 +45,28 @@ namespace Gameplay
             }
         }
         
-        private void HandlePause(bool isPaused)
+        private static void HandlePause(bool isPaused)
         {
             Time.timeScale = isPaused ? 0f : 1f; 
             GameEvents.SetIsPaused(isPaused);
+        }
+
+        private static void HandleLiveLost()
+        {
+            Debug.Log("Lost a life");
+            return;
+        }
+        
+        private static void HandleScore(int score)
+        {
+            GameEvents.AddScore(score);
         }
 
         private void OnSceneLoaded(Scene _, LoadSceneMode __)
         {
             GameEvents.SetIsPaused(false);
             Time.timeScale = 1f;
-            sceneTransitionAnimator.SetTrigger(_fadeInTrigger);
+            sceneTransitionAnimator.SetTrigger(FadeIn);
         }
     }
 }

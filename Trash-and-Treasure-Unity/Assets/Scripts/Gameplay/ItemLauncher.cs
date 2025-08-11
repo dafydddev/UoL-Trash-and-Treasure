@@ -4,6 +4,7 @@ namespace Gameplay
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Item))]
     public class ItemLauncher : MonoBehaviour
     {
         [Header("Launch Settings")] [SerializeField, Range(0f, 10f)]

@@ -119,12 +119,12 @@ TextureImporter:
       name: Bins_Background_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 260
-        width: 100
-        height: 100
+        x: 0
+        y: 240
+        width: 160
+        height: 120
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -133,6 +133,116 @@ TextureImporter:
       bones: []
       spriteID: f6279899e90797360800000000000000
       internalID: 7167884108419920495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bins_Background_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 160
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14c2eace1bb594a7ebf6ca0e2f0e312b
+      internalID: -8615111655760121347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bins_Background_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 160
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e22893cabdac48d28d1558f2ce2fac3
+      internalID: 1117815163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bins_Background_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 120
+        width: 160
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a3c9e90aa3645588c132c49d7c24cc
+      internalID: 530627091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bins_Background_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 160
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0657f88d3518d4c79a46582efe87b890
+      internalID: -772025911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bins_Background_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 160
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1560bcda57f448ed91ed15c76604652
+      internalID: 1732097174
       vertices: []
       indices: 
       edges: []
@@ -153,6 +263,10 @@ TextureImporter:
     nameFileIdTable:
       Bins_Background_0: 7167884108419920495
       Bins_Background_1: -8615111655760121347
+      Bins_Background_2: 1117815163
+      Bins_Background_3: 530627091
+      Bins_Background_4: -772025911
+      Bins_Background_5: 1732097174
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

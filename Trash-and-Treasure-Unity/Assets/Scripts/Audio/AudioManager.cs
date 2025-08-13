@@ -1,5 +1,6 @@
 using FMOD.Studio;
 using FMODUnity;
+using Gameplay;
 using UnityEngine;
 
 namespace Audio
@@ -7,6 +8,7 @@ namespace Audio
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager Instance { get; private set; }
+        private FMOD.Studio.System _studioSystem;
 
         private void Awake()
         {
@@ -14,11 +16,24 @@ namespace Audio
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
+                _studioSystem = RuntimeManager.StudioSystem;
             }
             else
             {
                 Destroy(gameObject);
             }
+
+            GameEvents.OnPauseToggled += HandlePause;
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
+
+            GameEvents.OnPauseToggled -= HandlePause;
         }
 
         // Play a one-shot sound effect, useful for UI interactions or short sound effects
@@ -28,9 +43,9 @@ namespace Audio
         }
 
         // Play sound at a specific position, useful for placing sounds in the world
-        public void PlayOneShotAttached(string eventPath, GameObject gameObject)
+        public void PlayOneShotAttached(string eventPath, GameObject attachedGameObject)
         {
-            RuntimeManager.PlayOneShotAttached(eventPath, gameObject);
+            RuntimeManager.PlayOneShotAttached(eventPath, attachedGameObject);
         }
 
         // Set the volume for a specific bus
@@ -40,6 +55,7 @@ namespace Audio
             {
                 return;
             }
+
             Bus bus = RuntimeManager.GetBus(busPath);
             bus.setVolume(volume);
         }
@@ -48,7 +64,6 @@ namespace Audio
         public void SetMasterVolume(float volume)
         {
             SetBusVolume("bus:/", volume);
-
         }
 
         // Set the volume for the background music bus
@@ -56,11 +71,22 @@ namespace Audio
         {
             SetBusVolume("bus:/BackgroundMusic", volume);
         }
-    
+
         // Set the volume for the SFX bus
         public void SetSFXVolume(float volume)
         {
             SetBusVolume("bus:/SFX", volume);
+        }
+
+        // Set a global parameter value
+        private void SetGlobalParameter(string parameterName, float value)
+        { 
+            _studioSystem.setParameterByName(parameterName, value);
+        }
+
+        private void HandlePause(bool isPaused)
+        {
+            SetGlobalParameter("Paused", isPaused ? 1.0f : 0.0f);
         }
     }
 }

@@ -15,16 +15,17 @@ namespace Gameplay
 
         [Header("Visual Feedback")] public GameObject aimIndicator;
 
+        private Item _item;
         private Rigidbody2D _rb2d;
         private Collider2D _collider2d;
         private Camera _cam;
         private bool _isDragging = false;
         private Vector3 _startPosition;
         private Vector3 _startMouseWorldPos;
-
-
+        
         private void Start()
         {
+            _item = GetComponent<Item>();
             _rb2d = GetComponent<Rigidbody2D>();
             _collider2d = GetComponent<Collider2D>();
             _cam = Camera.main;
@@ -70,6 +71,11 @@ namespace Gameplay
 
         private void HandleMouseInput()
         {
+            if (_item.GetItemState() == ItemState.Boxed)
+            {
+                return;
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);

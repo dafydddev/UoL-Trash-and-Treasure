@@ -942,16 +942,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5294019821375448267, guid: 3d3857fa6f7a34244871638ae9f669f6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7969265781850662015, guid: 3d3857fa6f7a34244871638ae9f669f6, type: 3}
       propertyPath: scoreValue
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7969265781850662015, guid: 3d3857fa6f7a34244871638ae9f669f6, type: 3}
+      propertyPath: boxedSprite
+      value: 
+      objectReference: {fileID: 8209512313543226067, guid: fbfacb6f957874641a662152b50c125f, type: 3}
+    - target: {fileID: 7969265781850662015, guid: 3d3857fa6f7a34244871638ae9f669f6, type: 3}
       propertyPath: shrinkSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7969265781850662015, guid: 3d3857fa6f7a34244871638ae9f669f6, type: 3}
+      propertyPath: unboxedSprite
+      value: 
+      objectReference: {fileID: 1160841906683709888, guid: fbfacb6f957874641a662152b50c125f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

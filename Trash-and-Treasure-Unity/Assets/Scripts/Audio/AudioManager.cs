@@ -10,6 +10,8 @@ namespace Audio
         public static AudioManager Instance { get; private set; }
         private FMOD.Studio.System _studioSystem;
 
+        private const string PauseParameter = "Paused";
+
         private void Awake()
         {
             if (Instance == null)
@@ -80,13 +82,18 @@ namespace Audio
 
         // Set a global parameter value
         private void SetGlobalParameter(string parameterName, float value)
-        { 
+        {
             _studioSystem.setParameterByName(parameterName, value);
         }
 
         private void HandlePause(bool isPaused)
         {
-            SetGlobalParameter("Paused", isPaused ? 1.0f : 0.0f);
+            SetGlobalParameter(PauseParameter, isPaused ? 1.0f : 0.0f);
+        }
+
+        public void ResetPause()
+        {
+            SetGlobalParameter(PauseParameter, 0.0f);
         }
     }
 }

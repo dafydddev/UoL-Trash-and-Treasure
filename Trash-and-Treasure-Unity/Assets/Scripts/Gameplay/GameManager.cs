@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,8 +54,6 @@ namespace Gameplay
 
         private static void HandleLiveLost()
         {
-            Debug.Log("Lost a life");
-            return;
         }
         
         private static void HandleScore(int score)
@@ -65,6 +64,7 @@ namespace Gameplay
         private void OnSceneLoaded(Scene _, LoadSceneMode __)
         {
             GameEvents.SetIsPaused(false);
+            AudioManager.Instance.ResetPause();
             Time.timeScale = 1f;
             sceneTransitionAnimator.SetTrigger(FadeIn);
         }

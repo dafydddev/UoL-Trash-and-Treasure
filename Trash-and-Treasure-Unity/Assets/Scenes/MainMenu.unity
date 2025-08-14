@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 37592659}
   - component: {fileID: 37592658}
   - component: {fileID: 37592661}
+  - component: {fileID: 37592662}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -154,9 +155,9 @@ RectTransform:
   - {fileID: 2031665225}
   m_Father: {fileID: 1744735058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320, y: -15}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &37592658
@@ -267,6 +268,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiController: {fileID: 1314936416}
   tutorialPanel: {fileID: 264505835}
+--- !u!114 &37592662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37592656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cad86ad65564afd88d451b2708dfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundEvent:
+    Guid:
+      Data1: 1173574411
+      Data2: 1159152097
+      Data3: 2137532094
+      Data4: -18307400
+    Path: event:/SFXs/ButtonHover
+  upSoundEvent:
+    Guid:
+      Data1: -1116494076
+      Data2: 1269559835
+      Data3: 208522406
+      Data4: -1731387242
+    Path: event:/SFXs/ButtonClick
 --- !u!1 &49408272
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &135606227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1155,6 +1182,7 @@ GameObject:
   - component: {fileID: 292044089}
   - component: {fileID: 292044088}
   - component: {fileID: 292044087}
+  - component: {fileID: 292044090}
   m_Layer: 5
   m_Name: TutorialButton
   m_TagString: Untagged
@@ -1177,9 +1205,9 @@ RectTransform:
   - {fileID: 230809904}
   m_Father: {fileID: 1744735058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320, y: -65}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &292044087
@@ -1276,6 +1304,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292044085}
   m_CullTransparentMesh: 1
+--- !u!114 &292044090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292044085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cad86ad65564afd88d451b2708dfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundEvent:
+    Guid:
+      Data1: 1173574411
+      Data2: 1159152097
+      Data3: 2137532094
+      Data4: -18307400
+    Path: event:/SFXs/ButtonHover
+  upSoundEvent:
+    Guid:
+      Data1: -1116494076
+      Data2: 1269559835
+      Data3: 208522406
+      Data4: -1731387242
+    Path: event:/SFXs/ButtonClick
 --- !u!1 &310077617
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,6 +2323,7 @@ GameObject:
   - component: {fileID: 567918397}
   - component: {fileID: 567918396}
   - component: {fileID: 567918395}
+  - component: {fileID: 567918398}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2390,6 +2445,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567918393}
   m_CullTransparentMesh: 1
+--- !u!114 &567918398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567918393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cad86ad65564afd88d451b2708dfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundEvent:
+    Guid:
+      Data1: 1173574411
+      Data2: 1159152097
+      Data3: 2137532094
+      Data4: -18307400
+    Path: event:/SFXs/ButtonHover
+  upSoundEvent:
+    Guid:
+      Data1: -1116494076
+      Data2: 1269559835
+      Data3: 208522406
+      Data4: -1731387242
+    Path: event:/SFXs/ButtonClick
 --- !u!1 &607024661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,6 +2859,7 @@ GameObject:
   - component: {fileID: 865855622}
   - component: {fileID: 865855621}
   - component: {fileID: 865855620}
+  - component: {fileID: 865855623}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -2899,6 +2981,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865855618}
   m_CullTransparentMesh: 1
+--- !u!114 &865855623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865855618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cad86ad65564afd88d451b2708dfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundEvent:
+    Guid:
+      Data1: 1173574411
+      Data2: 1159152097
+      Data3: 2137532094
+      Data4: -18307400
+    Path: event:/SFXs/ButtonHover
+  upSoundEvent:
+    Guid:
+      Data1: -1116494076
+      Data2: 1269559835
+      Data3: 208522406
+      Data4: -1731387242
+    Path: event:/SFXs/ButtonClick
 --- !u!1 &906154241
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,6 +3298,7 @@ GameObject:
   - component: {fileID: 975106567}
   - component: {fileID: 975106566}
   - component: {fileID: 975106565}
+  - component: {fileID: 975106568}
   m_Layer: 5
   m_Name: DeclineButton
   m_TagString: Untagged
@@ -3311,6 +3420,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975106563}
   m_CullTransparentMesh: 1
+--- !u!114 &975106568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975106563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cad86ad65564afd88d451b2708dfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundEvent:
+    Guid:
+      Data1: 1173574411
+      Data2: 1159152097
+      Data3: 2137532094
+      Data4: -18307400
+    Path: event:/SFXs/ButtonHover
+  upSoundEvent:
+    Guid:
+      Data1: -1116494076
+      Data2: 1269559835
+      Data3: 208522406
+      Data4: -1731387242
+    Path: event:/SFXs/ButtonClick
 --- !u!1 &1015655889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3567,6 +3702,7 @@ GameObject:
   - component: {fileID: 1126333853}
   - component: {fileID: 1126333852}
   - component: {fileID: 1126333851}
+  - component: {fileID: 1126333854}
   m_Layer: 5
   m_Name: SettingButton
   m_TagString: Untagged
@@ -3589,9 +3725,9 @@ RectTransform:
   - {fileID: 82123239}
   m_Father: {fileID: 1744735058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320, y: -115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1126333851
@@ -3688,6 +3824,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126333849}
   m_CullTransparentMesh: 1
+--- !u!114 &1126333854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126333849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cad86ad65564afd88d451b2708dfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundEvent:
+    Guid:
+      Data1: 1173574411
+      Data2: 1159152097
+      Data3: 2137532094
+      Data4: -18307400
+    Path: event:/SFXs/ButtonHover
+  upSoundEvent:
+    Guid:
+      Data1: -1116494076
+      Data2: 1269559835
+      Data3: 208522406
+      Data4: -1731387242
+    Path: event:/SFXs/ButtonClick
 --- !u!1 &1152124758
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,16 +42,40 @@ namespace Audio
             GameEvents.OnPauseToggled -= HandlePause;
         }
 
-        // Play a one-shot sound effect, useful for UI interactions or short sound effects
+        // Play a one-shot sound effect using eventReference (recommended)
+        public void PlayOneShot(EventReference eventReference)
+        {
+            if (!eventReference.IsNull)
+            {
+                RuntimeManager.PlayOneShot(eventReference);
+            }
+        }
+        
+        // Play a one-shot sound effect using string path (legacy support)
         public void PlayOneShot(string eventPath)
         {
-            RuntimeManager.PlayOneShot(eventPath);
+            if (!string.IsNullOrEmpty(eventPath))
+            {
+                RuntimeManager.PlayOneShot(eventPath);
+            }
         }
 
-        // Play sound at a specific position, useful for placing sounds in the world
+        // Play sound at a specific position using EventReference
+        public void PlayOneShotAttached(EventReference eventReference, GameObject attachedGameObject)
+        {
+            if (!eventReference.IsNull && attachedGameObject != null)
+            {
+                RuntimeManager.PlayOneShotAttached(eventReference, attachedGameObject);
+            }
+        }
+
+        // Play sound at a specific position using string path (legacy support)
         public void PlayOneShotAttached(string eventPath, GameObject attachedGameObject)
         {
-            RuntimeManager.PlayOneShotAttached(eventPath, attachedGameObject);
+            if (!string.IsNullOrEmpty(eventPath) && attachedGameObject != null)
+            {
+                RuntimeManager.PlayOneShotAttached(eventPath, attachedGameObject);
+            }
         }
 
         // Set the volume for a specific bus

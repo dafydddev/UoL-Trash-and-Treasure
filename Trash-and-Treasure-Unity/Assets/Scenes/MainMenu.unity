@@ -384,6 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   busType: 1
   slider: {fileID: 49408274}
+  defaultValue: 0.5
 --- !u!1 &82123238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,6 +3177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   busType: 0
   slider: {fileID: 946816848}
+  defaultValue: 0.5
 --- !u!1 &975106563
 GameObject:
   m_ObjectHideFlags: 0
@@ -3836,7 +3838,7 @@ GameObject:
   - component: {fileID: 1313691307}
   - component: {fileID: 1313691308}
   m_Layer: 5
-  m_Name: ButtonParent
+  m_Name: SliderParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4754,6 +4756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   busType: 2
   slider: {fileID: 1946736363}
+  defaultValue: 0.5
 --- !u!1 &2003419075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4783,6 +4786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3295e99cd4e414fdd800b542ee258748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultLevel: 0.5
 --- !u!4 &2003419077
 Transform:
   m_ObjectHideFlags: 0

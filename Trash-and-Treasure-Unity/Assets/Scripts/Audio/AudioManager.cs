@@ -9,8 +9,9 @@ namespace Audio
     {
         public static AudioManager Instance { get; private set; }
         private FMOD.Studio.System _studioSystem;
-
         private const string PauseParameter = "Paused";
+        
+        [SerializeField] private float defaultLevel = 0.5f;
 
         private void Awake()
         {
@@ -19,6 +20,9 @@ namespace Audio
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
                 _studioSystem = RuntimeManager.StudioSystem;
+                SetBackgroundMusicVolume(defaultLevel);
+                SetMasterVolume(defaultLevel);
+                SetSFXVolume(defaultLevel);
             }
             else
             {

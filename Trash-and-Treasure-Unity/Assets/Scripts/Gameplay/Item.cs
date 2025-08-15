@@ -25,27 +25,26 @@ namespace Gameplay
         [SerializeField] private Sprite boxedSprite;
         [SerializeField] private Sprite unboxedSprite;
 
+        [SerializeField] GameObject unboxParticle;
+
         [SerializeField] private int minClickToUnbox = 1;
         [SerializeField] private int maxClickToUnbox = 10;
         private int _clicksToUnboxRequired;
-        private int _clicksToUnboxCounter = 0;
+        private int _clicksToUnboxCounter;
+
+        private readonly Vector3 _minScaleBeforeCleanUp = new(0.1f, 0.1f, 0.1f);
 
         private bool _isShrinking;
         private ItemState _itemState;
 
         public ItemType GetItemType() => type;
         public int GetValue() => scoreValue;
-
+        
         public void Start()
         {
             _isShrinking = false;
             SetItemState(ItemState.Boxed);
             _clicksToUnboxRequired = Random.Range(minClickToUnbox, maxClickToUnbox);
-
-            gameObject.transform.localScale = Vector3.one;
-            gameObject.transform.localPosition = Vector3.zero;
-            gameObject.transform.localRotation = Quaternion.identity;
-
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = boxedSprite;
         }
@@ -65,7 +64,7 @@ namespace Gameplay
 
         private void ShrinkGameObject()
         {
-            if (gameObject.transform.localScale.x > 0.1f)
+            if (gameObject.transform.localScale.x > _minScaleBeforeCleanUp.x)
             {
                 gameObject.transform.localScale -=
                     new Vector3(shrinkSpeed * Time.deltaTime, shrinkSpeed * Time.deltaTime, 0);
@@ -94,8 +93,9 @@ namespace Gameplay
 
         private void UnboxItem()
         {
-            SetItemState(ItemState.Unboxed);
             _spriteRenderer.sprite = unboxedSprite;
+            SetItemState(ItemState.Unboxed);
+            unboxParticle.SetActive(true);
         }
 
         private void SetItemState(ItemState state)

@@ -44,6 +44,10 @@ namespace Gameplay
                 return;
             }
 
+            if (_item.GetItemState() == ItemState.Boxed)
+            {
+                return;
+            }
             HandleMouseInput();
             if (_isDragging)
             {
@@ -71,11 +75,6 @@ namespace Gameplay
 
         private void HandleMouseInput()
         {
-            if (_item.GetItemState() == ItemState.Boxed)
-            {
-                return;
-            }
-
             if (Input.GetMouseButtonDown(0))
             {
                 Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);

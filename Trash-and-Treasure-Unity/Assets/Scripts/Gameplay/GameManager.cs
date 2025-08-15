@@ -7,10 +7,6 @@ namespace Gameplay
     public class GameManager : MonoBehaviour
     {
         private static GameManager _instance; 
-        private static readonly int FadeIn = Animator.StringToHash(FadeInTrigger);
-        private const string FadeInTrigger = "FadeIn";
-        [SerializeField]
-        private Animator sceneTransitionAnimator;
         
         private void Awake()
         {
@@ -66,7 +62,6 @@ namespace Gameplay
             GameEvents.SetIsPaused(false);
             AudioManager.Instance.ResetPause();
             Time.timeScale = 1f;
-            sceneTransitionAnimator.SetTrigger(FadeIn);
         }
     }
 }

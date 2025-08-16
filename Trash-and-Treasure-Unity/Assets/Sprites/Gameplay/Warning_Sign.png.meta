@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4abaaad28aeea4719ba3edccb1cddc91
+guid: fd27a7a1d4dae4024a8d513e1dc0a23c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5406533990410881674
-    second: Background_Office_360p 1_0
+      213: 3444477368376882635
+    second: Warning_Sign_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_Office_360p 1_0
+      name: Warning_Sign_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 640
-        height: 360
+        x: 96
+        y: 185
+        width: 835
+        height: 722
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 675fb731bf128f4b0800000000000000
-      internalID: -5406533990410881674
+      spriteID: bc5f9fabaed3dcf20800000000000000
+      internalID: 3444477368376882635
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Background_Office_360p 1_0: -5406533990410881674
+      Warning_Sign_0: 3444477368376882635
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

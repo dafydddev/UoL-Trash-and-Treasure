@@ -7650,6 +7650,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2424685002719703191, guid: b04a5ca51771c4c3c8dd8637ea8ad7ce, type: 3}
+      propertyPath: deathCollider
+      value: 
+      objectReference: {fileID: 7659657746039939195}
+    - target: {fileID: 2424685002719703191, guid: b04a5ca51771c4c3c8dd8637ea8ad7ce, type: 3}
       propertyPath: groundCollider
       value: 
       objectReference: {fileID: 196438409}
@@ -7759,6 +7763,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
+--- !u!61 &7659657746039939195 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7102713713334128353, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
+  m_PrefabInstance: {fileID: 7659657746039939194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

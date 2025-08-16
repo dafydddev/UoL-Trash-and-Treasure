@@ -25,6 +25,7 @@ namespace Gameplay
         private SpriteRenderer _caneSpriteRenderer;
         
         [SerializeField] private Collider2D groundCollider;
+        [SerializeField] private Collider2D deathCollider;
 
         private void Start()
         {
@@ -52,7 +53,7 @@ namespace Gameplay
             var itemToSpawn = PickRandomItem(); 
             var spawnedItem = Instantiate(itemToSpawn, _fakeItemTransform, Quaternion.identity);
             var item = spawnedItem.GetComponent<Item>();
-            item.SetGroundCollider(groundCollider);
+            item.SetColliders(groundCollider, deathCollider);
         }
 
         private GameObject PickRandomItem()

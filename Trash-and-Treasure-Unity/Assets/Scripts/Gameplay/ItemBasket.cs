@@ -6,6 +6,7 @@ namespace Gameplay
     public class ItemBasket : MonoBehaviour
     {
         [SerializeField] private ItemType acceptedItemType;
+        [SerializeField] private int scoreModifier;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -13,7 +14,7 @@ namespace Gameplay
             if (item == null) return;
             if (item.GetItemType() == acceptedItemType)
             {
-                GameEvents.OnScoreChanged?.Invoke(item.GetValue());
+                GameEvents.OnScoreChanged?.Invoke(item.GetValue() * scoreModifier);
                 item.SwitchOff();
             }
             else

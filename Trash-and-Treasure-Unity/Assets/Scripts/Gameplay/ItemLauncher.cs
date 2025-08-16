@@ -11,7 +11,6 @@ namespace Gameplay
         private float maxForce = 10f;
 
         [SerializeField, Range(0f, 1f)] public float maxPullDistance = 0.5f;
-        [SerializeField] private Collider2D groundCollider2d;
 
         [Header("Visual Feedback")] public GameObject aimIndicator;
 
@@ -22,7 +21,7 @@ namespace Gameplay
         private bool _isDragging = false;
         private Vector3 _startPosition;
         private Vector3 _startMouseWorldPos;
-        
+
         private void Start()
         {
             _item = GetComponent<Item>();
@@ -34,12 +33,11 @@ namespace Gameplay
 
             aimIndicator.transform.localScale = Vector3.one * 0.3f;
             aimIndicator.SetActive(false);
-
         }
 
         private void Update()
         {
-            if (GameEvents.GetIsPaused())
+            if (GameEvents.GetIsPaused() || !_item)
             {
                 return;
             }
@@ -48,10 +46,31 @@ namespace Gameplay
             {
                 return;
             }
-            HandleMouseInput();
+
+            // Handle mouse release for launching
+            if (Input.GetMouseButtonUp(0) && _isDragging)
+            {
+                Launch();
+            }
+
             if (_isDragging)
             {
                 UpdateVisualFeedback();
+            }
+        }
+
+        // Replace the complex HandleMouseInput with simple OnMouseDown
+        private void OnMouseDown()
+        {
+            if (GameEvents.GetIsPaused() || _item.GetItemState() == ItemState.Boxed)
+            {
+                return;
+            }
+
+            // Check if item is touching ground before allowing drag
+            if (_collider2d.IsTouching(_item.GetGroundCollider()))
+            {
+                StartDrag();
             }
         }
 
@@ -65,30 +84,10 @@ namespace Gameplay
 
         private void ResetLauncher()
         {
-            // Stop any dragging operation
             if (_isDragging)
             {
                 _isDragging = false;
                 aimIndicator.SetActive(false);
-            }
-        }
-
-        private void HandleMouseInput()
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
-                mouseWorldPos.z = 0; // Ensure we're working in 2D
-
-                // Check if mouse is over this sprite using 2D collision
-                if (_collider2d && _collider2d.OverlapPoint(mouseWorldPos) && _collider2d.IsTouching(groundCollider2d))
-                {
-                    StartDrag();
-                }
-            }
-            else if (Input.GetMouseButtonUp(0) && _isDragging)
-            {
-                Launch();
             }
         }
 
@@ -99,11 +98,9 @@ namespace Gameplay
             _startMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             _startMouseWorldPos.z = 0;
 
-            // Stop any existing movement
             _rb2d.linearVelocity = Vector2.zero;
             _rb2d.angularVelocity = 0f;
 
-            // Enable visual feedback
             aimIndicator.SetActive(true);
         }
 
@@ -112,18 +109,13 @@ namespace Gameplay
             Vector3 currentMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             currentMouseWorldPos.z = 0;
 
-            // Calculate pull direction and distance
             Vector2 pullVector = _startMouseWorldPos - currentMouseWorldPos;
             Vector2 pullDirection = pullVector.normalized;
             float pullDistance = Mathf.Min(pullVector.magnitude, maxPullDistance);
 
-            // Update trajectory line (showing launch direction)
             Vector3 endPoint = _startPosition + (Vector3)(pullDirection * pullDistance);
-
-            // Update aim indicator
             aimIndicator.transform.position = endPoint;
 
-            // Update line color based on power
             float powerRatio = pullDistance / maxPullDistance;
             Color lineColor = Color.Lerp(Color.yellow, Color.red, powerRatio);
         }
@@ -133,16 +125,13 @@ namespace Gameplay
             Vector3 currentMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             currentMouseWorldPos.z = 0;
 
-            // Calculate launch force
             Vector2 pullVector = _startMouseWorldPos - currentMouseWorldPos;
             Vector2 launchDirection = pullVector.normalized;
             float pullDistance = Mathf.Min(pullVector.magnitude, maxPullDistance);
 
-            // Apply force proportional to pull distance
             float forceMultiplier = (pullDistance / maxPullDistance) * maxForce;
             _rb2d.AddForce(launchDirection * forceMultiplier, ForceMode2D.Impulse);
 
-            // Clean up
             _isDragging = false;
             aimIndicator.SetActive(false);
         }

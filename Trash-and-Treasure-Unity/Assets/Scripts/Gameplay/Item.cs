@@ -1,4 +1,6 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
+using System;
 
 namespace Gameplay
 {
@@ -20,12 +22,13 @@ namespace Gameplay
         [SerializeField] private ItemType type;
         [SerializeField] private int scoreValue;
         [SerializeField] private float shrinkSpeed = 0.1f;
-
+        
         private SpriteRenderer _spriteRenderer;
         [SerializeField] private Sprite boxedSprite;
         [SerializeField] private Sprite unboxedSprite;
 
         [SerializeField] GameObject unboxParticle;
+        [SerializeField] GameObject tutorialPointer;
 
         [SerializeField] private int minClickToUnbox = 1;
         [SerializeField] private int maxClickToUnbox = 10;
@@ -36,7 +39,12 @@ namespace Gameplay
 
         private bool _isShrinking;
         private ItemState _itemState;
-
+        
+        private Collider2D _groundCollider;
+        
+        public event Action OnClickedBoxed;
+        public event Action OnUnboxed;
+        
         public ItemType GetItemType() => type;
         public int GetValue() => scoreValue;
         
@@ -47,6 +55,7 @@ namespace Gameplay
             _clicksToUnboxRequired = Random.Range(minClickToUnbox, maxClickToUnbox);
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = boxedSprite;
+            
         }
 
         public void Update()
@@ -83,6 +92,7 @@ namespace Gameplay
                 if (_clicksToUnboxCounter < _clicksToUnboxRequired)
                 {
                     _clicksToUnboxCounter++;
+                    OnClickedBoxed?.Invoke();
                 }
                 else
                 {
@@ -96,6 +106,8 @@ namespace Gameplay
             _spriteRenderer.sprite = unboxedSprite;
             SetItemState(ItemState.Unboxed);
             unboxParticle.SetActive(true);
+            tutorialPointer.SetActive(false);
+            OnUnboxed?.Invoke();
         }
 
         private void SetItemState(ItemState state)
@@ -106,6 +118,22 @@ namespace Gameplay
         public ItemState GetItemState()
         {
             return _itemState;
+        }
+        
+        public void SetGroundCollider(Collider2D groundCollider)
+        {
+            _groundCollider = groundCollider;
+        }
+
+        public Collider2D GetGroundCollider()
+        {
+            return _groundCollider;
+        }
+
+        private void OnTriggerEnter2D(Collider2D _)
+        {
+            GameEvents.OnLiveLost?.Invoke();
+            Destroy(gameObject);
         }
     }
 }

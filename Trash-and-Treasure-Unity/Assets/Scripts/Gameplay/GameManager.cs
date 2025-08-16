@@ -50,6 +50,7 @@ namespace Gameplay
 
         private static void HandleLiveLost()
         {
+            GameEvents.DecrementLives();
         }
         
         private static void HandleScore(int score)

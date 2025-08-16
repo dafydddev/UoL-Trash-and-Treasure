@@ -1,20 +1,17 @@
-using System;
 using UnityEngine;
 
 namespace Gameplay
 {
     public class LivesCounter : MonoBehaviour
     {
-        private const string LabelPrefix = "Score: ";
-
-        [SerializeField] private GameObject firstLife;
-        [SerializeField] private GameObject secondLife;
-        [SerializeField] private GameObject thirdLife;
-        private GameObject[] _lives;
+        [SerializeField] private Life firstLife;
+        [SerializeField] private Life secondLife;
+        [SerializeField] private Life thirdLife;
+        private Life[] _lives;
 
         private void Start()
         {
-            _lives = new[] {firstLife, secondLife, thirdLife};
+            _lives = new[] { firstLife, secondLife, thirdLife };
         }
 
         private void Awake()
@@ -30,7 +27,7 @@ namespace Gameplay
         private void HandleLives()
         {
             int lifeToSwitchOffIndex = GameEvents.GetLives() - 1;
-            _lives[lifeToSwitchOffIndex].SetActive(false);
+            _lives[lifeToSwitchOffIndex].OnLifeLostAnimation();
         }
     }
 }

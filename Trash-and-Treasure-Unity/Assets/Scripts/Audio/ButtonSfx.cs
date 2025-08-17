@@ -6,7 +6,7 @@ using FMODUnity;
 namespace Audio
 {
     [RequireComponent(typeof(Button))]
-    public class ButtonSFXs : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler
+    public class ButtonSfx : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler
     {
         [SerializeField] private EventReference hoverSoundEvent;
         [SerializeField] private EventReference upSoundEvent;
@@ -22,7 +22,7 @@ namespace Audio
         {
             if (_button != null && _button.interactable && AudioManager.Instance != null)
             {
-                AudioManager.Instance.PlayOneShot(hoverSoundEvent);
+                AudioManager.PlayOneShot(hoverSoundEvent);
             }
         }
         
@@ -30,7 +30,7 @@ namespace Audio
         {
             if (_button != null && _button.interactable && AudioManager.Instance != null)
             {
-                AudioManager.Instance.PlayOneShot(upSoundEvent);
+                AudioManager.PlayOneShot(upSoundEvent);
             }
         }
     }

@@ -23,7 +23,6 @@ namespace UI
         private bool _movingRight = true;
         private bool _isRunning = false;
         
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
             _robotSpriteRender = GetComponent<SpriteRenderer>();

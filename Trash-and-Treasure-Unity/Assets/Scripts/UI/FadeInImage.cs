@@ -9,8 +9,7 @@ namespace UI
         private Animator _animator;
         [SerializeField] private AnimationClip fadeInAndOutClip;
     
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void Start()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
             _animator = GetComponent<Animator>();

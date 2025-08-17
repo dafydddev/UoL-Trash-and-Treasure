@@ -10,7 +10,7 @@ namespace Audio
         public static AudioManager Instance { get; private set; }
         private FMOD.Studio.System _studioSystem;
         private const string PauseParameter = "Paused";
-        
+
         [SerializeField] private float defaultLevel = 0.5f;
 
         private void Awake()
@@ -22,14 +22,13 @@ namespace Audio
                 _studioSystem = RuntimeManager.StudioSystem;
                 SetBackgroundMusicVolume(defaultLevel);
                 SetMasterVolume(defaultLevel);
-                SetSFXVolume(defaultLevel);
+                SetSfxVolume(defaultLevel);
+                GameEvents.OnPauseToggled += HandlePause;
             }
             else
             {
                 Destroy(gameObject);
             }
-
-            GameEvents.OnPauseToggled += HandlePause;
         }
 
         private void OnDestroy()
@@ -37,21 +36,20 @@ namespace Audio
             if (Instance == this)
             {
                 Instance = null;
+                GameEvents.OnPauseToggled -= HandlePause;
             }
-
-            GameEvents.OnPauseToggled -= HandlePause;
         }
 
         // Play a one-shot sound effect using eventReference (recommended)
-        public void PlayOneShot(EventReference eventReference)
+        public static void PlayOneShot(EventReference eventReference)
         {
             if (!eventReference.IsNull)
             {
                 RuntimeManager.PlayOneShot(eventReference);
             }
         }
-        
-        // Play a one-shot sound effect using string path (legacy support)
+
+        // Play a one-shot sound effect using a string path (legacy)
         public void PlayOneShot(string eventPath)
         {
             if (!string.IsNullOrEmpty(eventPath))
@@ -69,7 +67,7 @@ namespace Audio
             }
         }
 
-        // Play sound at a specific position using string path (legacy support)
+        // Play sound at a specific position using a string path (legacy support)
         public void PlayOneShotAttached(string eventPath, GameObject attachedGameObject)
         {
             if (!string.IsNullOrEmpty(eventPath) && attachedGameObject != null)
@@ -79,7 +77,7 @@ namespace Audio
         }
 
         // Set the volume for a specific bus
-        public void SetBusVolume(string busPath, float volume)
+        private static void SetBusVolume(string busPath, float volume)
         {
             if (string.IsNullOrEmpty(busPath))
             {
@@ -91,19 +89,19 @@ namespace Audio
         }
 
         // Set the volume for the master bus
-        public void SetMasterVolume(float volume)
+        public static void SetMasterVolume(float volume)
         {
             SetBusVolume("bus:/", volume);
         }
 
         // Set the volume for the background music bus
-        public void SetBackgroundMusicVolume(float volume)
+        public static void SetBackgroundMusicVolume(float volume)
         {
             SetBusVolume("bus:/BackgroundMusic", volume);
         }
 
         // Set the volume for the SFX bus
-        public void SetSFXVolume(float volume)
+        public static void SetSfxVolume(float volume)
         {
             SetBusVolume("bus:/SFX", volume);
         }

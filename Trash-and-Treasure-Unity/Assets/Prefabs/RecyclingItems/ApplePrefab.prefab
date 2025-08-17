@@ -458,7 +458,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2923695734744791289, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
       propertyPath: m_Name
-      value: ConfettiBlastRed
+      value: CardboardBlast
       objectReference: {fileID: 0}
     - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -501,7 +501,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2923695734744775977, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+    - {fileID: 2923695734744757201, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f91089a15676e47699822196b7eb4fe1, type: 3}

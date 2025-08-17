@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Gameplay
@@ -39,10 +38,10 @@ namespace Gameplay
             Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             float mouseX = mouseWorldPos.x;
 
-            // Get current sprite position
+            // Get the current sprite position
             _currentPosition = transform.position;
 
-            // Handle sprite flipping based on direction to mouse
+            // Handle sprite flipping based on the direction to mouse
             if (spriteRend)
             {
                 spriteRend.flipX = mouseX < _currentPosition.x;
@@ -51,7 +50,7 @@ namespace Gameplay
             // Calculate distance to mouse on X-axis only
             float currentDistanceToMouseX = Mathf.Abs(_currentPosition.x - mouseX);
 
-            // ONLY move if distance exceeds threshold
+            // ONLY move if distance exceeds the threshold
             if (currentDistanceToMouseX > bufferZoneFromMouse)
             {
                 // Calculate acceleration based on distance - further = faster, closer = slower 

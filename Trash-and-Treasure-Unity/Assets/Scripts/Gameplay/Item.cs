@@ -41,6 +41,7 @@ namespace Gameplay
         private ItemState _itemState;
         
         private Collider2D _groundCollider;
+        private Collider2D _deathCollider;
         
         public event Action OnClickedBoxed;
         public event Action OnUnboxed;
@@ -80,7 +81,6 @@ namespace Gameplay
             }
             else
             {
-                _isShrinking = false;
                 Destroy(gameObject);
             }
         }
@@ -120,9 +120,10 @@ namespace Gameplay
             return _itemState;
         }
         
-        public void SetGroundCollider(Collider2D groundCollider)
+        public void SetColliders(Collider2D groundCollider, Collider2D deathCollider)
         {
             _groundCollider = groundCollider;
+            _deathCollider = deathCollider;
         }
 
         public Collider2D GetGroundCollider()
@@ -130,8 +131,9 @@ namespace Gameplay
             return _groundCollider;
         }
 
-        private void OnTriggerEnter2D(Collider2D _)
+        private void OnTriggerEnter2D(Collider2D col)
         {
+            if (col != _deathCollider) return;
             GameEvents.OnLiveLost?.Invoke();
             Destroy(gameObject);
         }

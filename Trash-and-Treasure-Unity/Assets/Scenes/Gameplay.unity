@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 196438409}
   - component: {fileID: 196438410}
   m_Layer: 0
-  m_Name: ConveyorBelt
+  m_Name: ConveyorBeltGraphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2922,6 +2922,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671217249}
   m_CullTransparentMesh: 1
+--- !u!1001 &681628145
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2923695734744791289, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_Name
+      value: ConfettiBlastRed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.413691
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.39390433
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923695734744975121, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f91089a15676e47699822196b7eb4fe1, type: 3}
 --- !u!1 &701292424
 GameObject:
   m_ObjectHideFlags: 0
@@ -7655,7 +7712,7 @@ PrefabInstance:
       objectReference: {fileID: 196438409}
     - target: {fileID: 8349711528694339979, guid: b04a5ca51771c4c3c8dd8637ea8ad7ce, type: 3}
       propertyPath: m_Name
-      value: CraneParent
+      value: Crane
       objectReference: {fileID: 0}
     - target: {fileID: 8413968814771262770, guid: b04a5ca51771c4c3c8dd8637ea8ad7ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7712,7 +7769,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1434466136708480098, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
       propertyPath: m_Name
-      value: Crusher_Parent
+      value: Crusher
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599392201517775715, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
+      propertyPath: m_Name
+      value: Crusher_Head
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902795086098500725, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
+      propertyPath: m_Size.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3059658587847507094, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
+      propertyPath: m_Name
+      value: Crusher_Arm
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893409717699275784, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542555167729949822, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7351764454634298907, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7773,3 +7850,4 @@ SceneRoots:
   - {fileID: 7659657746039939194}
   - {fileID: 3461314606924749639}
   - {fileID: 312126633}
+  - {fileID: 681628145}

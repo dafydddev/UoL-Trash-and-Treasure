@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7351764454634298907}
   - component: {fileID: 5882107773313000852}
   m_Layer: 0
-  m_Name: Crusher_Parent
+  m_Name: Crusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

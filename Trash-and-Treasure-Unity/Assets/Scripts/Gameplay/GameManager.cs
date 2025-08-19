@@ -6,8 +6,8 @@ namespace Gameplay
 {
     public class GameManager : MonoBehaviour
     {
-        private static GameManager _instance; 
-        
+        private static GameManager _instance;
+
         private void Awake()
         {
             if (_instance == null)
@@ -22,17 +22,24 @@ namespace Gameplay
 
             GameEvents.OnScoreChanged += HandleScore;
             GameEvents.OnLiveLost += HandleLiveLost;
+            GameEvents.OnLiveGained += HandleLiveGained;
             GameEvents.OnPauseToggled += HandlePause;
+            GameEvents.OnGameStart += HandleGameStart;
+            GameEvents.OnGameOver += HandleGameOver;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        
+
         private void OnDestroy()
         {
             GameEvents.OnScoreChanged -= HandleScore;
+            GameEvents.OnLiveLost -= HandleLiveLost;
+            GameEvents.OnLiveGained -= HandleLiveGained;
             GameEvents.OnPauseToggled -= HandlePause;
+            GameEvents.OnGameStart -= HandleGameStart;
+            GameEvents.OnGameOver -= HandleGameOver;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-        
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -41,18 +48,23 @@ namespace Gameplay
                 GameEvents.OnPauseToggled?.Invoke(newPauseState);
             }
         }
-        
+
         private static void HandlePause(bool isPaused)
         {
-            Time.timeScale = isPaused ? 0f : 1f; 
+            Time.timeScale = isPaused ? 0f : 1f;
             GameEvents.SetIsPaused(isPaused);
+        }
+
+        private static void HandleLiveGained()
+        {
+            GameEvents.IncrementLives();
         }
 
         private static void HandleLiveLost()
         {
             GameEvents.DecrementLives();
         }
-        
+
         private static void HandleScore(int score)
         {
             GameEvents.AddScore(score);
@@ -63,6 +75,16 @@ namespace Gameplay
             GameEvents.SetIsPaused(false);
             AudioManager.Instance.ResetPause();
             Time.timeScale = 1f;
+        }
+
+        private void HandleGameStart()
+        {
+            return;
+        }
+
+        private void HandleGameOver()
+        {
+            return;
         }
     }
 }

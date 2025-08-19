@@ -7,8 +7,9 @@ namespace Gameplay
         private static bool _isPaused;
         private static bool _hasCompletedTutorial;
         private static int _lives = MaxLives;
-        private const int MaxLives = 3;
         private static int _currentScore;
+        private const int MinLives = 0;
+        private const int MaxLives = 3;
 
         public static System.Action OnGameStart;
         public static System.Action OnGameOver;
@@ -16,6 +17,7 @@ namespace Gameplay
         public static System.Action OnTutorialComplete;
         public static System.Action OnLevelComplete;
         public static System.Action OnLiveLost;
+        public static System.Action OnLiveGained;
         public static System.Action<int> OnScoreChanged;
 
         public static void SetIsPaused(bool isPaused)
@@ -40,7 +42,7 @@ namespace Gameplay
 
         public static void DecrementLives()
         {
-            if (_lives <= 0)
+            if (_lives > MinLives)
             {
                 _lives--;
             }

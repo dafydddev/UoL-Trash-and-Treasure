@@ -98,6 +98,7 @@ namespace Gameplay
             _startMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             _startMouseWorldPos.z = 0;
 
+            _rb2d.bodyType = RigidbodyType2D.Kinematic;
             _rb2d.linearVelocity = Vector2.zero;
             _rb2d.angularVelocity = 0f;
 
@@ -128,6 +129,8 @@ namespace Gameplay
             Vector2 pullVector = _startMouseWorldPos - currentMouseWorldPos;
             Vector2 launchDirection = pullVector.normalized;
             float pullDistance = Mathf.Min(pullVector.magnitude, maxPullDistance);
+            
+            _rb2d.bodyType = RigidbodyType2D.Dynamic;
 
             float forceMultiplier = (pullDistance / maxPullDistance) * maxForce;
             _rb2d.AddForce(launchDirection * forceMultiplier, ForceMode2D.Impulse);
@@ -143,6 +146,11 @@ namespace Gameplay
                 Gizmos.color = Color.blue;
                 Gizmos.DrawWireSphere(transform.position, maxPullDistance);
             }
+        }
+
+        public bool IsDragging()
+        {
+            return _isDragging;
         }
     }
 }

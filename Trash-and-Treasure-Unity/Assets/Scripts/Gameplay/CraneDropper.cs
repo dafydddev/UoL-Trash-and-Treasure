@@ -35,9 +35,10 @@ namespace Gameplay
             _fakeSpriteRenderer = fakeItemSpriteRenderer.GetComponent<SpriteRenderer>();
             _caneSpriteRenderer = caneSpriteRenderer.GetComponent<SpriteRenderer>();
             _caneSpriteRenderer.sprite = craneClosedSprite;
-
             _animator = GetComponent<Animator>();
             _timeToNextDrop = PickNextDropTime();
+            // Do the initial drop
+            _animator.SetTrigger(DropTriggerHash);
         }
 
         private void ToggleCraneSprite()
@@ -48,24 +49,26 @@ namespace Gameplay
 
         private void Update()
         {
-            if (!_isAnimating)
+            if (GameEvents.GetIsPaused() || !GameEvents.GetGameInProgress() || _isAnimating)
             {
-                _timeToNextDrop -= Time.deltaTime;
+                return;
+            }
 
-                if (_timeToNextDrop <= 0)
-                {
-                    // Set a new x position
-                    transform.position = new Vector3(PickNewPosition(), transform.position.y, transform.position.z);
+            _timeToNextDrop -= Time.deltaTime;
 
-                    // Trigger the animation
-                    _animator.SetTrigger(DropTriggerHash);
+            if (_timeToNextDrop <= 0)
+            {
+                // Set a new x position
+                transform.position = new Vector3(PickNewPosition(), transform.position.y, transform.position.z);
 
-                    // Reset timer for next drop
-                    _timeToNextDrop = PickNextDropTime();
-                    
-                    // Set flag to prevent retriggering
-                    _isAnimating = true;
-                }
+                // Trigger the animation
+                _animator.SetTrigger(DropTriggerHash);
+
+                // Reset timer for next drop
+                _timeToNextDrop = PickNextDropTime();
+
+                // Set flag to prevent retriggering
+                _isAnimating = true;
             }
         }
 

@@ -48,6 +48,19 @@ namespace Audio
                 RuntimeManager.PlayOneShot(eventReference);
             }
         }
+        
+        // Play a one-shot sound effect using eventReference and param
+        public static void PlayOneShot(EventReference eventReference, string parameterName, float parameterValue)
+        {
+            if (!eventReference.IsNull)
+            {
+                EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+                eventInstance.setParameterByName(parameterName, parameterValue);
+                eventInstance.start();
+                eventInstance.release();
+            }
+        }
+
 
         // Play a one-shot sound effect using a string path (legacy)
         public void PlayOneShot(string eventPath)

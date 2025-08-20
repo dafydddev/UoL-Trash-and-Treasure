@@ -17,6 +17,7 @@ namespace Gameplay
         Unboxed
     }
 
+    [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
     public class Item : MonoBehaviour
     {
@@ -40,6 +41,7 @@ namespace Gameplay
         private int _clicksToUnboxCounter;
 
         private Rigidbody2D _rb2d;
+        private Collider2D _col2d;
 
         private readonly Vector3 _minScaleBeforeCleanUp = new(0.01f, 0.01f, 0.01f);
 
@@ -67,6 +69,7 @@ namespace Gameplay
             _spriteRenderer.sprite = boxedSprite;
             _rb2d = GetComponent<Rigidbody2D>();
             _itemLauncher = GetComponent<ItemLauncher>();
+            _col2d = GetComponent<Collider2D>();
         }
 
         public void Update()
@@ -80,18 +83,16 @@ namespace Gameplay
 
         private void FixedUpdate()
         {
-            // Only drift when unboxed, not moused over, on ground, not being dragged, and mostly stationary
-            // if ( !_isMouseOver && IsOnGround() &&  !_itemLauncher.IsDragging() && _rb2d.linearVelocity.magnitude < velocityThreshold)
-            // {
-            //     _rb2d.AddForce(Vector2.right * driftForce, ForceMode2D.Force);
-            // }
-            
-            if ( !_isMouseOver && IsOnGround() &&  !_itemLauncher.IsDragging() && _rb2d.linearVelocity.magnitude < velocityThreshold)
+            if (!IsOnGround() || _isMouseOver || _itemLauncher.IsDragging() || !GameEvents.GetGameInProgress())
+            {
+                return;
+            }
+
+            if (_rb2d.linearVelocity.magnitude < velocityThreshold)
             {
                 _rb2d.linearVelocity = new Vector2(driftForce, _rb2d.linearVelocity.y);
             }
         }
-
 
         public void SwitchOff()
         {
@@ -102,7 +103,8 @@ namespace Gameplay
         {
             if (gameObject.transform.localScale.x > _minScaleBeforeCleanUp.x)
             {
-                gameObject.transform.localScale -= new Vector3(shrinkSpeed * Time.deltaTime, shrinkSpeed * Time.deltaTime, 0);
+                gameObject.transform.localScale -=
+                    new Vector3(shrinkSpeed * Time.deltaTime, shrinkSpeed * Time.deltaTime, 0);
             }
             else
             {
@@ -149,6 +151,10 @@ namespace Gameplay
             tutorialPointer.SetActive(false);
             _rb2d.freezeRotation = false;
             OnUnboxed?.Invoke();
+            if (!GameEvents.GetGameInProgress())
+            {
+                GameEvents.OnGameStart?.Invoke();
+            }
         }
 
         private void SetItemState(ItemState state)
@@ -176,7 +182,8 @@ namespace Gameplay
         {
             if (col != _deathCollider) return;
             GameEvents.OnLiveLost?.Invoke();
-            Destroy(gameObject);
+            _col2d.enabled = false;
+            Destroy(gameObject, 2.0f);
         }
     }
 }

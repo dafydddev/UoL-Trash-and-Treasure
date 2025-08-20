@@ -9,7 +9,10 @@ namespace Audio
     {
         [SerializeField] private EventReference boxedClick;
         [SerializeField] private EventReference unBoxedClick;
-        [SerializeField] private float collisionForceThreshold = 5f;
+        [SerializeField] private EventReference boxCollision;
+        [SerializeField] private string collisionIntensityParameter = "collisionIntensity";
+        [SerializeField] private float collisionForceThreshold = 0.1f;
+        [SerializeField] private float maxForce = 10.0f;
 
         private Item _item;
 
@@ -55,9 +58,11 @@ namespace Audio
                 var collisionForce = collision.relativeVelocity.magnitude;
                 if (collisionForce > collisionForceThreshold)
                 {
-                    AudioManager.PlayOneShot(boxedClick);
+                    float normalizedForce = collisionForce / maxForce;
+                    AudioManager.PlayOneShot(boxCollision, collisionIntensityParameter, normalizedForce);
                 }
             }
         }
+
     }
 }

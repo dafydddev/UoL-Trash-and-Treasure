@@ -4,7 +4,8 @@ namespace Gameplay
 {
     public static class GameEvents
     {
-        private static bool _isPaused;
+        private static bool _isPaused = false;
+        private static bool _isGameInProgress;
         private static bool _hasCompletedTutorial;
         private static int _lives = MaxLives;
         private static int _currentScore;
@@ -64,6 +65,16 @@ namespace Gameplay
         public static int GetScore()
         {
             return _currentScore;
+        }
+        
+        public static void SetGameInProgress(bool isGameInProgress)
+        {
+            _isGameInProgress = isGameInProgress;
+        }
+
+        public static bool GetGameInProgress()
+        {
+            return _isGameInProgress;
         }
 
         public static void ResetScore()

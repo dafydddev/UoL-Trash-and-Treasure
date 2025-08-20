@@ -73,13 +73,14 @@ namespace Gameplay
         private void OnSceneLoaded(Scene _, LoadSceneMode __)
         {
             GameEvents.SetIsPaused(false);
+            GameEvents.SetGameInProgress(false);
             AudioManager.Instance.ResetPause();
             Time.timeScale = 1f;
         }
 
         private void HandleGameStart()
         {
-            return;
+            GameEvents.SetGameInProgress(true);
         }
 
         private void HandleGameOver()

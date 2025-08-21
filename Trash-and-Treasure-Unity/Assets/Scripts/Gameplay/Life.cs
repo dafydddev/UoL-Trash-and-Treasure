@@ -14,7 +14,7 @@ namespace Gameplay
         
         public void SwitchOff()
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }

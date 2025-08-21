@@ -32,6 +32,10 @@ namespace Gameplay
             if (lifeToSwitchOffIndex < 0) return;
             _livesCount--;
             _lives[lifeToSwitchOffIndex].OnLifeLostAnimation();
+            if (_livesCount <= GameEvents.GetMinLives())
+            {
+                GameEvents.OnGameOver?.Invoke();
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Gameplay
 
         public static void DecrementLives()
         {
-            if (_lives > MinLives)
+            if (_lives >= MinLives)
             {
                 _lives--;
             }
@@ -60,6 +60,11 @@ namespace Gameplay
         public static int GetLives()
         {
             return _lives;
+        }
+
+        public static int GetMinLives()
+        {
+            return MinLives;
         }
 
         public static int GetScore()

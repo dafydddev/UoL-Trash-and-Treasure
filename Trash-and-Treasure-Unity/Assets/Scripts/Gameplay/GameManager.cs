@@ -85,7 +85,7 @@ namespace Gameplay
 
         private void HandleGameOver()
         {
-            return;
+            Time.timeScale = 0f;
         }
     }
 }

@@ -54,6 +54,7 @@ namespace UI
                 return;
             }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             // If we're selected to move onto the next scene, we've complete the tutorial
             if (!GameEvents.GetHasCompletedTutorial())
             {
@@ -61,6 +62,8 @@ namespace UI
             }
 =======
 <<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 =======

@@ -53,21 +53,6 @@ namespace UI
                 Debug.LogError("Next scene reference is not set.");
                 return;
             }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            // If we're selected to move onto the next scene, we've complete the tutorial
-            if (!GameEvents.GetHasCompletedTutorial())
-            {
-                GameEvents.SetHasCompletedTutorial(true);
-            }
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-
-=======
->>>>>>> Stashed changes
             LoadSceneByReference(nextScene);
         }
 

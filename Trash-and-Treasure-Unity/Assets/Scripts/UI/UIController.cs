@@ -53,6 +53,11 @@ namespace UI
                 Debug.LogError("Next scene reference is not set.");
                 return;
             }
+            // If we're selected to move onto the next scene, we've complete the tutorial
+            if (!GameEvents.GetHasCompletedTutorial())
+            {
+                GameEvents.SetHasCompletedTutorial(true);
+            }
 
             LoadSceneByReference(nextScene);
         }

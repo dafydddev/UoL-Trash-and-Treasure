@@ -11,18 +11,22 @@ namespace Gameplay
         {
             GameEvents.OnScoreChanged += HandleScoreChanged;
         }
-        
+
         private void OnDestroy()
         {
             GameEvents.OnScoreChanged -= HandleScoreChanged;
         }
-        
+
         private void HandleScoreChanged(int _)
         {
             if (items.Length > 0 && _itemCounter < items.Length)
             {
                 items[_itemCounter].SetActive(true);
                 _itemCounter++;
+                if (_itemCounter == items.Length)
+                {
+                    GameEvents.OnLevelComplete?.Invoke();
+                }
             }
         }
     }

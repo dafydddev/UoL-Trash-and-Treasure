@@ -13,6 +13,7 @@ namespace Audio
         private const string PauseParameter = "Paused";
 
         [SerializeField] private float defaultLevel = 0.5f;
+        [SerializeField] private bool pauseAudioOnFocusLoss = true;
 
         [SerializeField] private EventReference mainMenuBackground;
         [SerializeField] private EventReference gameplayBackground;
@@ -58,10 +59,17 @@ namespace Audio
             }
             else
             {
-                StopSceneAudio();
+                // Add a small delay to prevent audio stuttering during scene transitions
+                StartCoroutine(StopSceneAudioDelayed(2.0f));
             }
         }
 
+        private System.Collections.IEnumerator StopSceneAudioDelayed(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            StopSceneAudio();
+        }
+        
         public void PlayMainMenuBackground()
         {
             PlaySceneAudio(mainMenuBackground);

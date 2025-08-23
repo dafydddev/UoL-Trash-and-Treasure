@@ -10,6 +10,8 @@ namespace Audio
         [SerializeField] private EventReference boxedClick;
         [SerializeField] private EventReference unBoxedClick;
         [SerializeField] private EventReference boxCollision;
+        [SerializeField] private EventReference positiveBeep;
+        [SerializeField] private EventReference negativeBeep;
         [SerializeField] private string collisionIntensityParameter = "collisionIntensity";
         [SerializeField] private float collisionForceThreshold = 0.1f;
         [SerializeField] private float maxForce = 10.0f;
@@ -23,6 +25,8 @@ namespace Audio
             {
                 _item.OnUnboxed += PlayUnboxedSound;
                 _item.OnClickedBoxed += PlayBoxedSound;
+                _item.OnItemPositive += PlayPositiveSfx;
+                _item.OnItemNegative += PlayNegativeSfx;
             }
         }
 
@@ -51,6 +55,22 @@ namespace Audio
             }
         }
 
+        private void PlayPositiveSfx()
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.PlayOneShot(positiveBeep);
+            }
+        }
+
+        private void PlayNegativeSfx()
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.PlayOneShot(negativeBeep);
+            }
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (AudioManager.Instance != null)
@@ -63,6 +83,5 @@ namespace Audio
                 }
             }
         }
-
     }
 }

@@ -29,10 +29,12 @@ namespace Gameplay
         private void HandleLives()
         {
             int lifeToSwitchOffIndex = _livesCount - 1;
-            if (lifeToSwitchOffIndex < 0) return;
             _livesCount--;
-            _lives[lifeToSwitchOffIndex].OnLifeLostAnimation();
-            if (_livesCount <= GameEvents.GetMinLives())
+            if (lifeToSwitchOffIndex >= 0)
+            {
+                _lives[lifeToSwitchOffIndex].OnLifeLostAnimation();
+            }
+            if (_livesCount < GameEvents.GetMinLives())
             {
                 GameEvents.OnGameOver?.Invoke();
             }

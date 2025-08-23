@@ -19,6 +19,7 @@ namespace Gameplay
 
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(TrailRenderer))]
     public class Item : MonoBehaviour
     {
         [SerializeField] private ItemType type;
@@ -42,6 +43,7 @@ namespace Gameplay
 
         private Rigidbody2D _rb2d;
         private Collider2D _col2d;
+        private TrailRenderer trailRenderer;
 
         private readonly Vector3 _minScaleBeforeCleanUp = new(0.01f, 0.01f, 0.01f);
 
@@ -57,6 +59,10 @@ namespace Gameplay
         public event Action OnClickedBoxed;
         public event Action OnUnboxed;
 
+        public event Action OnItemPositive;
+
+        public event Action OnItemNegative;
+
         public ItemType GetItemType() => type;
         public int GetValue() => scoreValue;
 
@@ -70,6 +76,7 @@ namespace Gameplay
             _rb2d = GetComponent<Rigidbody2D>();
             _itemLauncher = GetComponent<ItemLauncher>();
             _col2d = GetComponent<Collider2D>();
+            trailRenderer = GetComponent<TrailRenderer>();
         }
 
         public void Update()
@@ -96,6 +103,7 @@ namespace Gameplay
 
         public void SwitchOff()
         {
+            OnItemPositive?.Invoke();
             _isShrinking = true;
         }
 
@@ -103,6 +111,7 @@ namespace Gameplay
         {
             if (gameObject.transform.localScale.x > _minScaleBeforeCleanUp.x)
             {
+                _rb2d.bodyType = RigidbodyType2D.Static;
                 gameObject.transform.localScale -=
                     new Vector3(shrinkSpeed * Time.deltaTime, shrinkSpeed * Time.deltaTime, 0);
             }
@@ -150,6 +159,7 @@ namespace Gameplay
             unboxParticle.SetActive(true);
             tutorialPointer.SetActive(false);
             _rb2d.freezeRotation = false;
+            trailRenderer.enabled = true;
             OnUnboxed?.Invoke();
             if (!GameEvents.GetGameInProgress())
             {
@@ -182,6 +192,7 @@ namespace Gameplay
         {
             if (col != _deathCollider) return;
             GameEvents.OnLiveLost?.Invoke();
+            OnItemNegative?.Invoke();
             _col2d.enabled = false;
             Destroy(gameObject, 2.0f);
         }

@@ -29,7 +29,7 @@ namespace Gameplay
 
         private void Update()
         {
-            if (GameEvents.GetIsPaused())
+            if (GameEvents.GetIsPaused() || !GameEvents.GetGameInProgress())
             {
                 return;
             }

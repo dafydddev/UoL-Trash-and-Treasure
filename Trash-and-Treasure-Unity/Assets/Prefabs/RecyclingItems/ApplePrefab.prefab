@@ -86,12 +86,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1160841906683709888, guid: fbfacb6f957874641a662152b50c125f, type: 3}
+  m_Sprite: {fileID: 1160841906683709888, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 2.21, y: 2.14}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -177,8 +177,8 @@ MonoBehaviour:
   shrinkSpeed: 0.05
   driftForce: 0.5
   velocityThreshold: 0.1
-  boxedSprite: {fileID: 8209512313543226067, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  unboxedSprite: {fileID: 1160841906683709888, guid: fbfacb6f957874641a662152b50c125f, type: 3}
+  boxedSprite: {fileID: 8209512313543226067, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  unboxedSprite: {fileID: 1160841906683709888, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
   unboxParticle: {fileID: 6639546548904000456}
   basketParticle: {fileID: 2297287930614088522}
   tutorialPointer: {fileID: 6304801606714478171}
@@ -432,12 +432,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1160841906683709888, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c57a716b118bf491c89e20f373e4730d, type: 3}
+  m_Color: {r: 1, g: 0.034782615, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 4.8, y: 3.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

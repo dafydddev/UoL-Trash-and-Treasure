@@ -86,6 +86,11 @@ namespace Gameplay
         {
             _currentScore = 0;
         }
+        
+        public static void ResetLives()
+        {
+            _lives = MaxLives;
+        }
 
         public static void AddScore(int score)
         {

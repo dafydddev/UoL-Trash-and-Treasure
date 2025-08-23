@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fbfacb6f957874641a662152b50c125f
+guid: 78e850c40e9234431bcbfcc2c9a5c37b
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -161,10 +161,10 @@ TextureImporter:
       name: Items_Recycling_Big_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 780
-        width: 254
-        height: 217
+        x: 1
+        y: 779
+        width: 256
+        height: 219
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: Items_Recycling_Big_1
       rect:
         serializedVersion: 2
-        x: 262
-        y: 781
-        width: 244
-        height: 228
+        x: 261
+        y: 780
+        width: 246
+        height: 230
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: Items_Recycling_Big_2
       rect:
         serializedVersion: 2
-        x: 514
-        y: 795
-        width: 254
-        height: 176
+        x: 513
+        y: 794
+        width: 256
+        height: 178
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,10 +227,10 @@ TextureImporter:
       name: Items_Recycling_Big_3
       rect:
         serializedVersion: 2
-        x: 774
-        y: 782
-        width: 234
-        height: 233
+        x: 773
+        y: 781
+        width: 236
+        height: 235
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +249,10 @@ TextureImporter:
       name: Items_Recycling_Big_4
       rect:
         serializedVersion: 2
-        x: 4
-        y: 529
-        width: 249
-        height: 219
+        x: 3
+        y: 528
+        width: 251
+        height: 221
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,10 +271,10 @@ TextureImporter:
       name: Items_Recycling_Big_5
       rect:
         serializedVersion: 2
-        x: 269
-        y: 522
-        width: 214
-        height: 235
+        x: 268
+        y: 521
+        width: 216
+        height: 237
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,10 +293,10 @@ TextureImporter:
       name: Items_Recycling_Big_6
       rect:
         serializedVersion: 2
-        x: 532
-        y: 516
-        width: 218
-        height: 244
+        x: 531
+        y: 515
+        width: 220
+        height: 246
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +315,10 @@ TextureImporter:
       name: Items_Recycling_Big_7
       rect:
         serializedVersion: 2
-        x: 794
-        y: 514
-        width: 217
-        height: 255
+        x: 793
+        y: 513
+        width: 219
+        height: 257
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,10 +337,10 @@ TextureImporter:
       name: Items_Recycling_Big_8
       rect:
         serializedVersion: 2
-        x: 21
-        y: 277
-        width: 219
-        height: 212
+        x: 20
+        y: 276
+        width: 221
+        height: 214
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,10 +359,10 @@ TextureImporter:
       name: Items_Recycling_Big_9
       rect:
         serializedVersion: 2
-        x: 256
-        y: 287
-        width: 256
-        height: 160
+        x: 285
+        y: 268
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: Items_Recycling_Big_10
       rect:
         serializedVersion: 2
-        x: 535
-        y: 264
-        width: 221
-        height: 217
+        x: 534
+        y: 263
+        width: 223
+        height: 219
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -403,10 +403,10 @@ TextureImporter:
       name: Items_Recycling_Big_11
       rect:
         serializedVersion: 2
-        x: 789
-        y: 275
-        width: 224
-        height: 211
+        x: 788
+        y: 274
+        width: 226
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,10 +425,10 @@ TextureImporter:
       name: Items_Recycling_Big_12
       rect:
         serializedVersion: 2
-        x: 1
-        y: 25
-        width: 254
-        height: 213
+        x: 0
+        y: 24
+        width: 256
+        height: 215
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,10 +447,10 @@ TextureImporter:
       name: Items_Recycling_Big_13
       rect:
         serializedVersion: 2
-        x: 274
-        y: 29
-        width: 236
-        height: 193
+        x: 273
+        y: 28
+        width: 238
+        height: 195
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -469,10 +469,10 @@ TextureImporter:
       name: Items_Recycling_Big_14
       rect:
         serializedVersion: 2
-        x: 519
-        y: 30
-        width: 243
-        height: 201
+        x: 518
+        y: 29
+        width: 245
+        height: 203
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,10 +491,10 @@ TextureImporter:
       name: Items_Recycling_Big_15
       rect:
         serializedVersion: 2
-        x: 826
-        y: 5
-        width: 149
-        height: 240
+        x: 825
+        y: 4
+        width: 151
+        height: 242
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -513,7 +513,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 80164385767cc4917bacfb42a6cc2a46
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 

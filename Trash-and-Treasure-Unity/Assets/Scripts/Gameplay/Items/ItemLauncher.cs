@@ -31,7 +31,7 @@ namespace Gameplay
 
             GameEvents.OnPauseToggled += HandlePause;
 
-            aimIndicator.transform.localScale = Vector3.one * 0.3f;
+            aimIndicator.transform.localScale = Vector3.one * 0.5f;
             aimIndicator.SetActive(false);
         }
 
@@ -116,9 +116,15 @@ namespace Gameplay
 
             Vector3 endPoint = _startPosition + (Vector3)(pullDirection * pullDistance);
             aimIndicator.transform.position = endPoint;
+            
+            if (pullVector.magnitude > 0.01f) // Avoid rotation when there's no meaningful pull
+            {
+                float angle = Mathf.Atan2(pullDirection.y, pullDirection.x) * Mathf.Rad2Deg;
+                aimIndicator.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
 
-            float powerRatio = pullDistance / maxPullDistance;
-            Color lineColor = Color.Lerp(Color.yellow, Color.red, powerRatio);
+            // float powerRatio = pullDistance / maxPullDistance;
+            // Color lineColor = Color.Lerp(Color.yellow, Color.red, powerRatio);
         }
 
         private void Launch()

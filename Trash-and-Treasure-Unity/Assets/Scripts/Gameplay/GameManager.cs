@@ -78,6 +78,8 @@ namespace Gameplay
         {
             GameEvents.SetIsPaused(false);
             GameEvents.SetGameInProgress(false);
+            GameEvents.ResetScore();
+            GameEvents.ResetLives();
             Time.timeScale = 1f;
         }
 

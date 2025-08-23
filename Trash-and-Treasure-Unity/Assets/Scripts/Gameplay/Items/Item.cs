@@ -43,7 +43,7 @@ namespace Gameplay
 
         private Rigidbody2D _rb2d;
         private Collider2D _col2d;
-        private TrailRenderer trailRenderer;
+        private TrailRenderer _trailRenderer;
 
         private readonly Vector3 _minScaleBeforeCleanUp = new(0.01f, 0.01f, 0.01f);
 
@@ -76,7 +76,7 @@ namespace Gameplay
             _rb2d = GetComponent<Rigidbody2D>();
             _itemLauncher = GetComponent<ItemLauncher>();
             _col2d = GetComponent<Collider2D>();
-            trailRenderer = GetComponent<TrailRenderer>();
+            _trailRenderer = GetComponent<TrailRenderer>();
         }
 
         public void Update()
@@ -111,7 +111,6 @@ namespace Gameplay
         {
             if (gameObject.transform.localScale.x > _minScaleBeforeCleanUp.x)
             {
-                _rb2d.bodyType = RigidbodyType2D.Static;
                 gameObject.transform.localScale -=
                     new Vector3(shrinkSpeed * Time.deltaTime, shrinkSpeed * Time.deltaTime, 0);
             }
@@ -159,7 +158,7 @@ namespace Gameplay
             unboxParticle.SetActive(true);
             tutorialPointer.SetActive(false);
             _rb2d.freezeRotation = false;
-            trailRenderer.enabled = true;
+            _trailRenderer.enabled = true;
             OnUnboxed?.Invoke();
             if (!GameEvents.GetGameInProgress())
             {

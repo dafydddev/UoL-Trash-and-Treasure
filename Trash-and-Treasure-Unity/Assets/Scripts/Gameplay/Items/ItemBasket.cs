@@ -16,6 +16,7 @@ namespace Gameplay
             {
                 GameEvents.OnScoreChanged?.Invoke(item.GetValue() * scoreModifier);
                 item.SwitchOff();
+                other.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             }
             else
             {

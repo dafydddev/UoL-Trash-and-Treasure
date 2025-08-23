@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Splash.unity
+    guid: c5312cbe3dba441cd8473414ff03e60f
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Gameplay.unity
+    path: Assets/Scenes/LevelOne.unity
     guid: 941ccc2a3425b41cbaa2262ff6f2b80b
+  - enabled: 1
+    path: Assets/Scenes/LevelTwo.unity
+    guid: ca5402e070407472c834fa2984cb0837
+  - enabled: 1
+    path: Assets/Scenes/LevelThree.unity
+    guid: 38ed8f91ff5e746e28e3aa90ed54113d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

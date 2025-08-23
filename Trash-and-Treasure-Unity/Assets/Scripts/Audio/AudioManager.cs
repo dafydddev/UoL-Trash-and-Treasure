@@ -2,6 +2,7 @@ using FMOD.Studio;
 using FMODUnity;
 using Gameplay;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Audio
 {
@@ -13,6 +14,12 @@ namespace Audio
 
         [SerializeField] private float defaultLevel = 0.5f;
 
+        [SerializeField] private EventReference mainMenuBackground;
+        [SerializeField] private EventReference gameplayBackground;
+        [SerializeField] private EventReference gameStateJingle;
+
+        private EventInstance _currentSceneAudio;
+        
         private void Awake()
         {
             if (Instance == null)
@@ -24,6 +31,7 @@ namespace Audio
                 SetMasterVolume(defaultLevel);
                 SetSfxVolume(defaultLevel);
                 GameEvents.OnPauseToggled += HandlePause;
+                SceneManager.sceneLoaded += OnSceneLoaded;
             }
             else
             {
@@ -37,10 +45,58 @@ namespace Audio
             {
                 Instance = null;
                 GameEvents.OnPauseToggled -= HandlePause;
+                SceneManager.sceneLoaded -= OnSceneLoaded;
             }
         }
 
-        // Play a one-shot sound effect using eventReference (recommended)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode __)
+        {
+            ResetPause();
+            if (scene.name == "MainMenu")
+            {
+                PlayMainMenuBackground();
+            }
+            else
+            {
+                StopSceneAudio();
+            }
+        }
+
+        public void PlayMainMenuBackground()
+        {
+            PlaySceneAudio(mainMenuBackground);
+        }
+
+        public void PlayGameplayBackground()
+        {
+            PlaySceneAudio(gameplayBackground);
+        }
+
+        public void PlayGameStateJingle()
+        {
+            PlayOneShot(gameStateJingle);
+        }
+
+        private void PlaySceneAudio(EventReference eventReference)
+        {
+            StopSceneAudio();
+            if (!eventReference.IsNull)
+            {
+                _currentSceneAudio = RuntimeManager.CreateInstance(eventReference);
+                _currentSceneAudio.start();
+            }
+        }
+
+        public void StopSceneAudio()
+        {
+            if (_currentSceneAudio.isValid())
+            {
+                _currentSceneAudio.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                _currentSceneAudio.release();
+            }
+        }
+
+        // Play a one-shot sound effect using eventReference
         public static void PlayOneShot(EventReference eventReference)
         {
             if (!eventReference.IsNull)
@@ -48,7 +104,7 @@ namespace Audio
                 RuntimeManager.PlayOneShot(eventReference);
             }
         }
-        
+
         // Play a one-shot sound effect using eventReference and param
         public static void PlayOneShot(EventReference eventReference, string parameterName, float parameterValue)
         {
@@ -60,7 +116,6 @@ namespace Audio
                 eventInstance.release();
             }
         }
-
 
         // Play a one-shot sound effect using a string path (legacy)
         public void PlayOneShot(string eventPath)

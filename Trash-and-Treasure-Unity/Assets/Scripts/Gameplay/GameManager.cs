@@ -26,6 +26,8 @@ namespace Gameplay
             GameEvents.OnPauseToggled += HandlePause;
             GameEvents.OnGameStart += HandleGameStart;
             GameEvents.OnGameOver += HandleGameOver;
+            GameEvents.OnLevelComplete += HandleLevelComplete;
+            GameEvents.OnTutorialComplete += HandleTutorialComplete;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
@@ -37,6 +39,8 @@ namespace Gameplay
             GameEvents.OnPauseToggled -= HandlePause;
             GameEvents.OnGameStart -= HandleGameStart;
             GameEvents.OnGameOver -= HandleGameOver;
+            GameEvents.OnLevelComplete -= HandleLevelComplete;
+            GameEvents.OnTutorialComplete += HandleTutorialComplete;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
@@ -70,22 +74,36 @@ namespace Gameplay
             GameEvents.AddScore(score);
         }
 
-        private void OnSceneLoaded(Scene _, LoadSceneMode __)
+        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             GameEvents.SetIsPaused(false);
             GameEvents.SetGameInProgress(false);
-            AudioManager.Instance.ResetPause();
             Time.timeScale = 1f;
         }
 
-        private void HandleGameStart()
+        private static void HandleGameStart()
         {
             GameEvents.SetGameInProgress(true);
+            AudioManager.Instance.PlayGameplayBackground();
         }
 
-        private void HandleGameOver()
+        private static void HandleLevelComplete()
         {
             Time.timeScale = 0f;
+            AudioManager.Instance.StopSceneAudio();
+            AudioManager.Instance.PlayGameStateJingle();
+        }
+
+        private static void HandleGameOver()
+        {
+            Time.timeScale = 0f;
+            AudioManager.Instance.StopSceneAudio();
+            AudioManager.Instance.PlayGameStateJingle();
+        }
+
+        private static void HandleTutorialComplete()
+        {
+            GameEvents.SetHasCompletedTutorial(true);
         }
     }
 }

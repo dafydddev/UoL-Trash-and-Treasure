@@ -81,6 +81,12 @@ namespace Gameplay
             GameEvents.ResetScore();
             GameEvents.ResetLives();
             Time.timeScale = 1f;
+            // If we're selected to move onto the next scene from the Main Menu, we've completed the tutorial
+            if (!GameEvents.GetHasCompletedTutorial() && scene.name != "MainMenu")
+            {
+                GameEvents.SetHasCompletedTutorial(true);
+            }
+
         }
 
         private static void HandleGameStart()

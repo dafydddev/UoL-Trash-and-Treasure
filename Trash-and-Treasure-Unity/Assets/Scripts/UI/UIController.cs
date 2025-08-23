@@ -73,6 +73,11 @@ namespace UI
             SceneManager.LoadScene(sceneName);
         }
 
+        public void ReloadCurrentScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         private static void LoadSceneByReference(SceneReference sceneRef)
         {
             if (sceneRef == null || string.IsNullOrEmpty(sceneRef.SceneName))

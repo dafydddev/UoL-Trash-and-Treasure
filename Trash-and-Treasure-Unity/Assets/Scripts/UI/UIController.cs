@@ -80,15 +80,9 @@ namespace UI
 
         private static void LoadSceneByReference(SceneReference sceneRef)
         {
-            // Log an error if we have attempted to load a scene without a valid reference
-            if (sceneRef == null || string.IsNullOrEmpty(sceneRef.SceneName))
-            {
-                Debug.LogError("SceneReference is null or missing name.");
-                return;
-            }
+            // Delegate to the Scenes Manager
+            ScenesManager.LoadSceneByReference(sceneRef);
 
-            // Delegate to the SceneManager to load the scene
-            SceneManager.LoadScene(sceneRef.SceneName);
         }
 
         private void UpdateUI(UIPanel panel)

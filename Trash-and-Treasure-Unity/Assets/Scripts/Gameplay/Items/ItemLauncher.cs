@@ -1,72 +1,80 @@
+using Managers;
 using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Items
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Item))]
     public class ItemLauncher : MonoBehaviour
     {
-        [Header("Launch Settings")] [SerializeField, Range(0f, 10f)]
+        [Header("Launch Settings")] 
+        // Maximum force that can be applied when launching
+        [SerializeField, Range(0f, 10f)]
         private float maxForce = 10f;
 
-        [SerializeField, Range(0f, 1f)] public float maxPullDistance = 0.5f;
+        // Maximum distance the item can be pulled back for aiming
+        [SerializeField, Range(0f, 1f)] 
+        public float maxPullDistance = 0.5f;
 
-        [Header("Visual Feedback")] public GameObject aimIndicator;
+        [Header("Visual Feedback")] 
+        // GameObject that shows the aim direction and force
+        public GameObject aimIndicator;
 
+        // Component references
         private Item _item;
         private Rigidbody2D _rb2d;
         private Collider2D _collider2d;
         private Camera _cam;
-        private bool _isDragging = false;
+        
+        // Drag state tracking
+        private bool _isDragging;
         private Vector3 _startPosition;
         private Vector3 _startMouseWorldPos;
 
         private void Start()
         {
+            // Initialize component references
             _item = GetComponent<Item>();
             _rb2d = GetComponent<Rigidbody2D>();
             _collider2d = GetComponent<Collider2D>();
             _cam = Camera.main;
 
+            // Subscribe to pause events
             GameEvents.OnPauseToggled += HandlePause;
 
+            // Setup aim indicator
             aimIndicator.transform.localScale = Vector3.one * 0.5f;
             aimIndicator.SetActive(false);
         }
 
         private void Update()
         {
-            if (GameEvents.GetIsPaused() || !_item)
-            {
-                return;
-            }
-
-            if (_item.GetItemState() == ItemState.Boxed)
-            {
-                return;
-            }
-
+            // Early exit when the game is paused or the item is null
+            if (GameEvents.IsPaused() || !_item) return;
+            // Early exit when the item is boxed (can't launch it)
+            if (_item.GetItemState() == ItemState.Boxed) return;
+            
             // Handle mouse release for launching
             if (Input.GetMouseButtonUp(0) && _isDragging)
             {
                 Launch();
             }
 
+            // Update visual feedback during drag
             if (_isDragging)
             {
                 UpdateVisualFeedback();
             }
         }
 
-        // Replace the complex HandleMouseInput with simple OnMouseDown
+        // Handle mouse click to start dragging
         private void OnMouseDown()
         {
-            if (GameEvents.GetIsPaused() || _item.GetItemState() == ItemState.Boxed)
-            {
-                return;
-            }
-
+            // Early exit if the game is paused, or we cannot get the item
+            if (GameEvents.IsPaused() || !_item) return;
+            // Early exit if we can get the item, but it is boxed
+            if (_item.GetItemState() == ItemState.Boxed) return;
             // Check if item is touching ground before allowing drag
             if (_collider2d.IsTouching(_item.GetGroundCollider()))
             {
@@ -74,6 +82,7 @@ namespace Gameplay
             }
         }
 
+        // Handle pause state changes
         private void HandlePause(bool isPaused)
         {
             if (isPaused)
@@ -82,15 +91,16 @@ namespace Gameplay
             }
         }
 
+        // Reset the launcher state when paused
         private void ResetLauncher()
         {
-            if (_isDragging)
-            {
-                _isDragging = false;
-                aimIndicator.SetActive(false);
-            }
+            // Early exit if we are not dragging
+            if (!_isDragging) return;
+            _isDragging = false;
+            aimIndicator.SetActive(false);
         }
 
+        // Initialise drag operation
         private void StartDrag()
         {
             _isDragging = true;
@@ -98,62 +108,62 @@ namespace Gameplay
             _startMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             _startMouseWorldPos.z = 0;
 
+            // Make rigidbody kinematic during drag to prevent physics interference
             _rb2d.bodyType = RigidbodyType2D.Kinematic;
             _rb2d.linearVelocity = Vector2.zero;
             _rb2d.angularVelocity = 0f;
 
+            // Show aim indicator
             aimIndicator.SetActive(true);
         }
 
+        // Update aim indicator position and rotation based on mouse movement
         private void UpdateVisualFeedback()
         {
-            Vector3 currentMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
+            var currentMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             currentMouseWorldPos.z = 0;
 
-            Vector2 pullVector = _startMouseWorldPos - currentMouseWorldPos;
-            Vector2 pullDirection = pullVector.normalized;
-            float pullDistance = Mathf.Min(pullVector.magnitude, maxPullDistance);
+            // Calculate pull vector and constrain to max distance
+            var pullVector = _startMouseWorldPos - currentMouseWorldPos;
+            var pullDirection = pullVector.normalized;
+            var pullDistance = Mathf.Min(pullVector.magnitude, maxPullDistance);
 
-            Vector3 endPoint = _startPosition + (Vector3)(pullDirection * pullDistance);
+            // Position the aim indicator
+            var endPoint = _startPosition + pullDirection * pullDistance;
             aimIndicator.transform.position = endPoint;
             
+            // Rotate the aim indicator to point in the launch direction
             if (pullVector.magnitude > 0.01f) // Avoid rotation when there's no meaningful pull
             {
-                float angle = Mathf.Atan2(pullDirection.y, pullDirection.x) * Mathf.Rad2Deg;
+                var angle = Mathf.Atan2(pullDirection.y, pullDirection.x) * Mathf.Rad2Deg;
                 aimIndicator.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
-
-            // float powerRatio = pullDistance / maxPullDistance;
-            // Color lineColor = Color.Lerp(Color.yellow, Color.red, powerRatio);
         }
 
+        // Launch the item with calculated force
         private void Launch()
         {
-            Vector3 currentMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
+            var currentMouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             currentMouseWorldPos.z = 0;
 
-            Vector2 pullVector = _startMouseWorldPos - currentMouseWorldPos;
-            Vector2 launchDirection = pullVector.normalized;
-            float pullDistance = Mathf.Min(pullVector.magnitude, maxPullDistance);
+            // Calculate launch parameters
+            var pullVector = _startMouseWorldPos - currentMouseWorldPos;
+            var launchDirection = pullVector.normalized;
+            var pullDistance = Mathf.Min(pullVector.magnitude, maxPullDistance);
             
+            // Re-enable physics
             _rb2d.bodyType = RigidbodyType2D.Dynamic;
 
-            float forceMultiplier = (pullDistance / maxPullDistance) * maxForce;
+            // Apply launch force based on pull distance
+            var forceMultiplier = (pullDistance / maxPullDistance) * maxForce;
             _rb2d.AddForce(launchDirection * forceMultiplier, ForceMode2D.Impulse);
 
+            // Clean up drag state
             _isDragging = false;
             aimIndicator.SetActive(false);
         }
-
-        private void OnDrawGizmos()
-        {
-            if (_isDragging)
-            {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawWireSphere(transform.position, maxPullDistance);
-            }
-        }
-
+        
+        // Public method to check if currently dragging
         public bool IsDragging()
         {
             return _isDragging;

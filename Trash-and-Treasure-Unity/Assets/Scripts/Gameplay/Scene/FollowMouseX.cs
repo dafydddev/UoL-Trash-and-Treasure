@@ -1,6 +1,7 @@
+using Managers;
 using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Scene
 {
     public class FollowMouseX : MonoBehaviour
     {
@@ -29,14 +30,12 @@ namespace Gameplay
 
         private void Update()
         {
-            if (GameEvents.GetIsPaused() || !GameEvents.GetGameInProgress())
-            {
-                return;
-            }
-
+            // Early exit if the game is not in progress *or* is paused
+            if (!GameEvents.IsGameInProgress() || GameEvents.IsPaused()) return;
+            
             // Get mouse x position in world space 
-            Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
-            float mouseX = mouseWorldPos.x;
+            var mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
+            var mouseX = mouseWorldPos.x;
 
             // Get the current sprite position
             _currentPosition = transform.position;
@@ -48,20 +47,19 @@ namespace Gameplay
             }
 
             // Calculate distance to mouse on X-axis only
-            float currentDistanceToMouseX = Mathf.Abs(_currentPosition.x - mouseX);
+            var currentDistanceToMouseX = Mathf.Abs(_currentPosition.x - mouseX);
 
-            // ONLY move if distance exceeds the threshold
-            if (currentDistanceToMouseX > bufferZoneFromMouse)
-            {
-                // Calculate acceleration based on distance - further = faster, closer = slower 
-                float t = (currentDistanceToMouseX - bufferZoneFromMouse) / rampUpDistance;
-                t = Mathf.Clamp01(t);
-                float currentSpeed = Mathf.Lerp(0, maxSpeed, t) * Time.deltaTime;
-                // Move towards the exact mouse X position using MoveTowards, keeping Y and Z unchanged
-                float desiredX = Mathf.MoveTowards(_currentPosition.x, mouseX, currentSpeed);
-                float newX = Mathf.Clamp(desiredX, leftEdge, rightEdge);
-                transform.position = new Vector3(newX, _currentPosition.y, _currentPosition.z);
-            }
+            // Exit when the distance does not the threshold
+            if (!(currentDistanceToMouseX > bufferZoneFromMouse)) return;
+            
+            // Calculate acceleration based on distance - further = faster, closer = slower 
+            var t = (currentDistanceToMouseX - bufferZoneFromMouse) / rampUpDistance;
+            t = Mathf.Clamp01(t);
+            var currentSpeed = Mathf.Lerp(0, maxSpeed, t) * Time.deltaTime;
+            // Move towards the exact mouse X position using MoveTowards, keeping Y and Z unchanged
+            var desiredX = Mathf.MoveTowards(_currentPosition.x, mouseX, currentSpeed);
+            var newX = Mathf.Clamp(desiredX, leftEdge, rightEdge);
+            transform.position = new Vector3(newX, _currentPosition.y, _currentPosition.z);
         }
     }
 }

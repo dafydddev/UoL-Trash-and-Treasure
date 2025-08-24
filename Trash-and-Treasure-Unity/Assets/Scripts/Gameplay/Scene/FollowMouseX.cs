@@ -1,11 +1,4 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-
 using Managers;
->>>>>>> Stashed changes
 using UnityEngine;
 
 namespace Gameplay
@@ -46,20 +39,9 @@ namespace Gameplay
 
         private void Update()
         {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            if (GameEvents.GetIsPaused() || !GameEvents.GetGameInProgress())
-            {
-                return;
-            }
-
-=======
-=======
->>>>>>> Stashed changes
             // Early exit if the game is not in progress or is paused
             if (!GameEvents.IsGameInProgress() || GameEvents.IsPaused()) return;
             
->>>>>>> Stashed changes
             // Get mouse x position in world space 
             Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             float mouseX = mouseWorldPos.x;
@@ -76,23 +58,6 @@ namespace Gameplay
             // Calculate distance to mouse on X-axis only
             float currentDistanceToMouseX = Mathf.Abs(_currentPosition.x - mouseX);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            // ONLY move if distance exceeds the threshold
-            if (currentDistanceToMouseX > bufferZoneFromMouse)
-            {
-                // Calculate acceleration based on distance - further = faster, closer = slower 
-                float t = (currentDistanceToMouseX - bufferZoneFromMouse) / rampUpDistance;
-                t = Mathf.Clamp01(t);
-                float currentSpeed = Mathf.Lerp(0, maxSpeed, t) * Time.deltaTime;
-                // Move towards the exact mouse X position using MoveTowards, keeping Y and Z unchanged
-                float desiredX = Mathf.MoveTowards(_currentPosition.x, mouseX, currentSpeed);
-                float newX = Mathf.Clamp(desiredX, leftEdge, rightEdge);
-                transform.position = new Vector3(newX, _currentPosition.y, _currentPosition.z);
-            }
-=======
-=======
->>>>>>> Stashed changes
             // Exit when the distance is within the buffer zone (no movement needed)
             if (!(currentDistanceToMouseX > bufferZoneFromMouse)) return;
             
@@ -106,7 +71,6 @@ namespace Gameplay
             // Clamp to scene boundaries
             var newX = Mathf.Clamp(desiredX, leftEdge, rightEdge);
             transform.position = new Vector3(newX, _currentPosition.y, _currentPosition.z);
->>>>>>> Stashed changes
         }
     }
 }

@@ -2,7 +2,6 @@ using FMOD.Studio;
 using FMODUnity;
 using Gameplay;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Audio
 {
@@ -38,10 +37,22 @@ namespace Audio
             {
                 Destroy(gameObject);
             }
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
+=======
+
+            // Initialize FMOD Studio
+            _studioSystem = RuntimeManager.StudioSystem;
+            SetBackgroundMusicVolume(defaultLevel);
+            SetMasterVolume(defaultLevel);
+            SetSfxVolume(defaultLevel);
+            // Subscribe to the OnPauseToggled GameEvent
+            GameEvents.OnPauseToggled += HandlePause;
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
         }
 
         private void OnDestroy()
         {
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
             if (Instance == this)
             {
                 Instance = null;
@@ -68,6 +79,10 @@ namespace Audio
         {
             yield return new WaitForSeconds(delay);
             StopSceneAudio();
+=======
+            // Unsubscribe from the OnPauseToggled GameEvent
+            GameEvents.OnPauseToggled -= HandlePause;
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
         }
         
         public void PlayMainMenuBackground()
@@ -87,35 +102,55 @@ namespace Audio
 
         private void PlaySceneAudio(EventReference eventReference)
         {
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
             StopSceneAudio();
             if (!eventReference.IsNull)
             {
                 _currentSceneAudio = RuntimeManager.CreateInstance(eventReference);
                 _currentSceneAudio.start();
             }
+=======
+            // Early exit if the eventReference is null
+            if (eventReference.IsNull) return;
+            // Stop and existing scene audio
+            StopSceneAudio();
+            // Create an instance using the valid eventReference
+            _currentSceneAudio = RuntimeManager.CreateInstance(eventReference);
+            // Start the new instance
+            _currentSceneAudio.start();
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
         }
 
         public void StopSceneAudio()
         {
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
             if (_currentSceneAudio.isValid())
             {
                 _currentSceneAudio.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 _currentSceneAudio.release();
             }
+=======
+            // Early exit if the _currentSceneAudio is invalid
+            if (!_currentSceneAudio.isValid()) return;
+            // Stop the current scene audio
+            _currentSceneAudio.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            // Release the instance
+            _currentSceneAudio.release();
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
         }
 
-        // Play a one-shot sound effect using eventReference
         public static void PlayOneShot(EventReference eventReference)
         {
-            if (!eventReference.IsNull)
-            {
-                RuntimeManager.PlayOneShot(eventReference);
-            }
+            // Early exit if the eventReference is null
+            if (eventReference.IsNull) return;
+            // Play a one-shot sound effect using eventReference
+            RuntimeManager.PlayOneShot(eventReference);
         }
 
         // Play a one-shot sound effect using eventReference and param
         public static void PlayOneShot(EventReference eventReference, string parameterName, float parameterValue)
         {
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
             if (!eventReference.IsNull)
             {
                 EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
@@ -152,6 +187,20 @@ namespace Audio
             }
         }
 
+=======
+            // Early exit if the eventReference is null
+            if (eventReference.IsNull) return;
+            // Play a one-shot sound effect using eventReference and param
+            EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+            // Set the param using the name and value
+            eventInstance.setParameterByName(parameterName, parameterValue);
+            // Start the event
+            eventInstance.start();
+            // Release the event instance
+            eventInstance.release();
+        }
+
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
         // Set the volume for a specific bus
         private static void SetBusVolume(string busPath, float volume)
         {

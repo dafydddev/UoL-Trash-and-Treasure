@@ -1,7 +1,6 @@
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -45,37 +44,14 @@ namespace Managers
             SetBackgroundMusicVolume(defaultLevel);
             SetMasterVolume(defaultLevel);
             SetSfxVolume(defaultLevel);
-
-            // Subscribe to the GameEvents
+            // Subscribe to the OnPauseToggled GameEvent
             GameEvents.OnPauseToggled += HandlePause;
-            // Subscribe to the SceneManager sceneLoaded event
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDestroy()
         {
+            // Unsubscribe from the OnPauseToggled GameEvent
             GameEvents.OnPauseToggled -= HandlePause;
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode __)
-        {
-            HandlePause(GameEvents.IsPaused());
-            if (scene.name == "MainMenu")
-            {
-                PlayMainMenuBackground();
-            }
-            else
-            {
-                // Add a small delay to prevent audio stuttering during scene transitions
-                StartCoroutine(StopSceneAudioDelayed(0.5f));
-            }
-        }
-
-        private System.Collections.IEnumerator StopSceneAudioDelayed(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            StopSceneAudio();
         }
 
         public void PlayMainMenuBackground()
@@ -95,54 +71,47 @@ namespace Managers
 
         private void PlaySceneAudio(EventReference eventReference)
         {
-            StopSceneAudio();
+            // Early exit if the eventReference is null
             if (eventReference.IsNull) return;
+            // Stop and existing scene audio
+            StopSceneAudio();
+            // Create an instance using the valid eventReference
             _currentSceneAudio = RuntimeManager.CreateInstance(eventReference);
+            // Start the new instance
             _currentSceneAudio.start();
         }
 
         public void StopSceneAudio()
         {
+            // Early exit if the _currentSceneAudio is invalid
             if (!_currentSceneAudio.isValid()) return;
+            // Stop the current scene audio
             _currentSceneAudio.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            // Release the instance
             _currentSceneAudio.release();
         }
 
-        // Play a one-shot sound effect using eventReference
         public static void PlayOneShot(EventReference eventReference)
         {
-            if (!eventReference.IsNull)
-            {
-                RuntimeManager.PlayOneShot(eventReference);
-            }
+            // Early exit if the eventReference is null
+            if (eventReference.IsNull) return;
+            // Play a one-shot sound effect using eventReference
+            RuntimeManager.PlayOneShot(eventReference);
         }
 
         // Play a one-shot sound effect using eventReference and param
         public static void PlayOneShot(EventReference eventReference, string parameterName, float parameterValue)
         {
+            // Early exit if the eventReference is null
             if (eventReference.IsNull) return;
+            // Play a one-shot sound effect using eventReference and param
             EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+            // Set the param using the name and value
             eventInstance.setParameterByName(parameterName, parameterValue);
+            // Start the event
             eventInstance.start();
+            // Release the event instance
             eventInstance.release();
-        }
-
-        // Play a one-shot sound effect using a string path (legacy)
-        public void PlayOneShot(string eventPath)
-        {
-            if (!string.IsNullOrEmpty(eventPath))
-            {
-                RuntimeManager.PlayOneShot(eventPath);
-            }
-        }
-
-        // Play sound at a specific position using a string path (legacy support)
-        public void PlayOneShotAttached(string eventPath, GameObject attachedGameObject)
-        {
-            if (!string.IsNullOrEmpty(eventPath) && attachedGameObject != null)
-            {
-                RuntimeManager.PlayOneShotAttached(eventPath, attachedGameObject);
-            }
         }
 
         // Set the volume for a specific bus

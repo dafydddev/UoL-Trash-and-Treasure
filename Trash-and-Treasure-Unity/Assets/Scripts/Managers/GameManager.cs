@@ -94,7 +94,6 @@ namespace Managers
             {
                 GameEvents.SetHasCompletedTutorial();
             }
-
         }
 
         private static void HandleGameStart()

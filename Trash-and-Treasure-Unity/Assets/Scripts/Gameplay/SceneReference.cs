@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace UI
+namespace Managers
 {
     [System.Serializable]
     public class SceneReference

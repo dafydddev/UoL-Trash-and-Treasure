@@ -1,11 +1,15 @@
 using UnityEngine;
 
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/UI/SceneReference.cs
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 [System.Serializable]
 public class SceneReference
+=======
+namespace Managers
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/SceneReference.cs
 {
 #if UNITY_EDITOR
     [SerializeField] private SceneAsset sceneAsset;

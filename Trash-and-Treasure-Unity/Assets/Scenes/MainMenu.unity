@@ -409,8 +409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139d56c22833349db9adf4f3695af89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  busType: 1
   slider: {fileID: 49408274}
+  bus: 0
   defaultValue: 0.5
 --- !u!1 &82123238
 GameObject:
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 82123241}
   - component: {fileID: 82123240}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: AudioText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Audio
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc08b6bcf471c41df872e6d9a6e4501c, type: 2}
   m_sharedMaterial: {fileID: 6190905061980234255, guid: fc08b6bcf471c41df872e6d9a6e4501c, type: 2}
@@ -4013,8 +4013,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139d56c22833349db9adf4f3695af89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  busType: 0
   slider: {fileID: 946816848}
+  bus: 0
   defaultValue: 0.5
 --- !u!1 &975106563
 GameObject:
@@ -4435,7 +4435,7 @@ GameObject:
   - component: {fileID: 1126333851}
   - component: {fileID: 1126333854}
   m_Layer: 5
-  m_Name: SettingButton
+  m_Name: AudioButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5225,7 +5225,7 @@ Transform:
   m_GameObject: {fileID: 1434493358}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -380, y: -15, z: 0}
+  m_LocalPosition: {x: -362.18, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5249,27 +5249,29 @@ MonoBehaviour:
   minTimeToNextRun: 1
   maxTimeToNextRun: 5
   itemsToCarry:
-  - {fileID: -3715837107000914794, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -8232819901003445097, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -1243534233041806841, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: 1986481842797971617, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -2269092679413957400, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: 1952600279677194792, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -771735451736259055, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: 8209512313543226067, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: 1160841906683709888, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -5624016304589800298, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -1646325119671640160, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: 7255817229462907098, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -8094557293869428969, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -8944063869258166600, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: 5766269577150275298, guid: fbfacb6f957874641a662152b50c125f, type: 3}
-  - {fileID: -8392801305830142616, guid: fbfacb6f957874641a662152b50c125f, type: 3}
+  - {fileID: -3715837107000914794, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -8232819901003445097, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -1243534233041806841, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: 1986481842797971617, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -2269092679413957400, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: 1952600279677194792, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -771735451736259055, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: 8209512313543226067, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: 1160841906683709888, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -5624016304589800298, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -1646325119671640160, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: 7255817229462907098, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -8094557293869428969, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -8944063869258166600, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: 5766269577150275298, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+  - {fileID: -8392801305830142616, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
   itemCarryingRenderer: {fileID: 1304518480}
-  leftEdgeXPosition: -380
-  rightEdgeXPosition: 380
-  topHeight: -15
-  bottomHeight: -100
+  leftEdgeXPosition: -385
+  rightEdgeXPosition: 385
+  topRow: -15
+  bottomRow: -100
+  topRowScale: {x: 5, y: 5, z: 5}
+  bottomRowScale: {x: 7, y: 7, z: 7}
 --- !u!1 &1558526378
 GameObject:
   m_ObjectHideFlags: 0
@@ -6658,8 +6660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139d56c22833349db9adf4f3695af89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  busType: 2
   slider: {fileID: 1946736363}
+  bus: 0
   defaultValue: 0.5
 --- !u!1 &1979971557
 GameObject:
@@ -6827,7 +6829,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultLevel: 0.5
-  pauseAudioOnFocusLoss: 1
   mainMenuBackground:
     Guid:
       Data1: -1300112799

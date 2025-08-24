@@ -1,41 +1,32 @@
+using UnityEditor;
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-[System.Serializable]
-public class SceneReference
+namespace UI
 {
+    [System.Serializable]
+    public class SceneReference
+    {
 #if UNITY_EDITOR
-    [SerializeField] private SceneAsset sceneAsset;
+        // Reference to the scene asset in the editor
+        [SerializeField] private SceneAsset sceneAsset;
 #endif
-
-    [SerializeField] private string sceneName;
+        // The name of the scene to load
+        [SerializeField] private string sceneName;
 
 #if UNITY_EDITOR
-    public SceneAsset SceneAsset
-    {
-        get
-        {
-            return sceneAsset;
-        }
-    }
+        // Gets the scene asset reference for editor use
+        public SceneAsset SceneAsset => sceneAsset;
 
-    public void OnValidate()
-    {
-        if (sceneAsset != null)
+        public void OnValidate()
         {
-            sceneName = sceneAsset.name;
+            // Sync the scene name from the scene asset
+            if (sceneAsset != null)
+            {
+                sceneName = sceneAsset.name;
+            }
         }
-    }
 #endif
-
-    public string SceneName
-    {
-        get
-        {
-            return sceneName;
-        }
+        // Gets the name of the scene to load
+        public string SceneName => sceneName;
     }
 }

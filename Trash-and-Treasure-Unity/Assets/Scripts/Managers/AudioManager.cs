@@ -1,58 +1,66 @@
 using FMOD.Studio;
 using FMODUnity;
-using Gameplay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Audio
+namespace Managers
 {
     public class AudioManager : MonoBehaviour
     {
+        // AudioInstance Singleton
         public static AudioManager Instance { get; private set; }
+
+        // FMOD Studio Instance
         private FMOD.Studio.System _studioSystem;
-        private const string PauseParameter = "Paused";
 
+        // Default Gain Level
         [SerializeField] private float defaultLevel = 0.5f;
-        [SerializeField] private bool pauseAudioOnFocusLoss = true;
 
+        // FMOD Events References (set in inspector)
         [SerializeField] private EventReference mainMenuBackground;
         [SerializeField] private EventReference gameplayBackground;
         [SerializeField] private EventReference gameStateJingle;
 
+        // FMOD Params
+        private const string PauseParameter = "Paused";
+
+        // FMOD Events References (set by scripting on level transitions)
         private EventInstance _currentSceneAudio;
-        
+
         private void Awake()
         {
+            // Singleton pattern implementation
             if (Instance == null)
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
-                _studioSystem = RuntimeManager.StudioSystem;
-                SetBackgroundMusicVolume(defaultLevel);
-                SetMasterVolume(defaultLevel);
-                SetSfxVolume(defaultLevel);
-                GameEvents.OnPauseToggled += HandlePause;
-                SceneManager.sceneLoaded += OnSceneLoaded;
             }
             else
             {
                 Destroy(gameObject);
             }
+
+            // Initialize FMOD Studio
+            _studioSystem = RuntimeManager.StudioSystem;
+            SetBackgroundMusicVolume(defaultLevel);
+            SetMasterVolume(defaultLevel);
+            SetSfxVolume(defaultLevel);
+
+            // Subscribe to the GameEvents
+            GameEvents.OnPauseToggled += HandlePause;
+            // Subscribe to the SceneManager sceneLoaded event
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDestroy()
         {
-            if (Instance == this)
-            {
-                Instance = null;
-                GameEvents.OnPauseToggled -= HandlePause;
-                SceneManager.sceneLoaded -= OnSceneLoaded;
-            }
+            GameEvents.OnPauseToggled -= HandlePause;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode __)
         {
-            ResetPause();
+            HandlePause(GameEvents.IsPaused());
             if (scene.name == "MainMenu")
             {
                 PlayMainMenuBackground();
@@ -60,7 +68,7 @@ namespace Audio
             else
             {
                 // Add a small delay to prevent audio stuttering during scene transitions
-                StartCoroutine(StopSceneAudioDelayed(2.0f));
+                StartCoroutine(StopSceneAudioDelayed(0.5f));
             }
         }
 
@@ -69,7 +77,7 @@ namespace Audio
             yield return new WaitForSeconds(delay);
             StopSceneAudio();
         }
-        
+
         public void PlayMainMenuBackground()
         {
             PlaySceneAudio(mainMenuBackground);
@@ -88,20 +96,16 @@ namespace Audio
         private void PlaySceneAudio(EventReference eventReference)
         {
             StopSceneAudio();
-            if (!eventReference.IsNull)
-            {
-                _currentSceneAudio = RuntimeManager.CreateInstance(eventReference);
-                _currentSceneAudio.start();
-            }
+            if (eventReference.IsNull) return;
+            _currentSceneAudio = RuntimeManager.CreateInstance(eventReference);
+            _currentSceneAudio.start();
         }
 
         public void StopSceneAudio()
         {
-            if (_currentSceneAudio.isValid())
-            {
-                _currentSceneAudio.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                _currentSceneAudio.release();
-            }
+            if (!_currentSceneAudio.isValid()) return;
+            _currentSceneAudio.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            _currentSceneAudio.release();
         }
 
         // Play a one-shot sound effect using eventReference
@@ -116,13 +120,11 @@ namespace Audio
         // Play a one-shot sound effect using eventReference and param
         public static void PlayOneShot(EventReference eventReference, string parameterName, float parameterValue)
         {
-            if (!eventReference.IsNull)
-            {
-                EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
-                eventInstance.setParameterByName(parameterName, parameterValue);
-                eventInstance.start();
-                eventInstance.release();
-            }
+            if (eventReference.IsNull) return;
+            EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+            eventInstance.setParameterByName(parameterName, parameterValue);
+            eventInstance.start();
+            eventInstance.release();
         }
 
         // Play a one-shot sound effect using a string path (legacy)
@@ -131,15 +133,6 @@ namespace Audio
             if (!string.IsNullOrEmpty(eventPath))
             {
                 RuntimeManager.PlayOneShot(eventPath);
-            }
-        }
-
-        // Play sound at a specific position using EventReference
-        public void PlayOneShotAttached(EventReference eventReference, GameObject attachedGameObject)
-        {
-            if (!eventReference.IsNull && attachedGameObject != null)
-            {
-                RuntimeManager.PlayOneShotAttached(eventReference, attachedGameObject);
             }
         }
 
@@ -160,7 +153,7 @@ namespace Audio
                 return;
             }
 
-            Bus bus = RuntimeManager.GetBus(busPath);
+            var bus = RuntimeManager.GetBus(busPath);
             bus.setVolume(volume);
         }
 
@@ -191,11 +184,6 @@ namespace Audio
         private void HandlePause(bool isPaused)
         {
             SetGlobalParameter(PauseParameter, isPaused ? 1.0f : 0.0f);
-        }
-
-        public void ResetPause()
-        {
-            SetGlobalParameter(PauseParameter, 0.0f);
         }
     }
 }

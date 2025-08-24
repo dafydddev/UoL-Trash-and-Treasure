@@ -86,17 +86,7 @@ namespace Gameplay
             {
                 GameEvents.SetHasCompletedTutorial(true);
             }
-            else if (scene.name != "MainMenu")
-            {
-                // If we are not in the main menu, stop the scene audio
-                // We will later trigger it to start when the player starts the gameplay
-                AudioManager.Instance.StopSceneAudio();
-            }
-            else
-            {
-                // If we are in the main menu, play the main menu background music
-                AudioManager.Instance.PlayMainMenuBackground();
-            }
+
         }
 
         private static void HandleGameStart()

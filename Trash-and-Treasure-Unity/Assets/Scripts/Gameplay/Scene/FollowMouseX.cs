@@ -1,25 +1,39 @@
+<<<<<<< Updated upstream
+=======
+
+using Managers;
+>>>>>>> Stashed changes
 using UnityEngine;
 
 namespace Gameplay
 {
     public class FollowMouseX : MonoBehaviour
     {
-        [Header("Following Settings")] [SerializeField]
+        [Header("Following Settings")] 
+        // Maximum speed the object can move towards the mouse
+        [SerializeField]
         private float maxSpeed = 400f;
 
+        // Dead zone around the mouse position where no movement occurs
         [SerializeField] private float bufferZoneFromMouse = 0.1f;
+        // Distance over which speed ramps up to maximum
         [SerializeField] private float rampUpDistance = 100f;
 
-        [Header("Sprite to Flip")] [SerializeField]
+        [Header("Sprite to Flip")] 
+        // Sprite renderer that will be flipped based on the movement direction
+        [SerializeField]
         private SpriteRenderer spriteRend;
 
         private Camera _cam;
         private Vector3 _currentPosition;
         private Vector3 _mouseInWorldSpacePosition;
 
-        [Header("Scene Edges")] [SerializeField]
+        [Header("Scene Edges")] 
+        // Left boundary for object movement
+        [SerializeField]
         private float leftEdge = -2.75f;
 
+        // Right boundary for object movement
         [SerializeField] private float rightEdge = 2.75f;
 
         private void Awake()
@@ -29,11 +43,17 @@ namespace Gameplay
 
         private void Update()
         {
+<<<<<<< Updated upstream
             if (GameEvents.GetIsPaused() || !GameEvents.GetGameInProgress())
             {
                 return;
             }
 
+=======
+            // Early exit if the game is not in progress or is paused
+            if (!GameEvents.IsGameInProgress() || GameEvents.IsPaused()) return;
+            
+>>>>>>> Stashed changes
             // Get mouse x position in world space 
             Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             float mouseX = mouseWorldPos.x;
@@ -50,6 +70,7 @@ namespace Gameplay
             // Calculate distance to mouse on X-axis only
             float currentDistanceToMouseX = Mathf.Abs(_currentPosition.x - mouseX);
 
+<<<<<<< Updated upstream
             // ONLY move if distance exceeds the threshold
             if (currentDistanceToMouseX > bufferZoneFromMouse)
             {
@@ -62,6 +83,21 @@ namespace Gameplay
                 float newX = Mathf.Clamp(desiredX, leftEdge, rightEdge);
                 transform.position = new Vector3(newX, _currentPosition.y, _currentPosition.z);
             }
+=======
+            // Exit when the distance is within the buffer zone (no movement needed)
+            if (!(currentDistanceToMouseX > bufferZoneFromMouse)) return;
+            
+            // Calculate acceleration based on distance - further = faster, closer = slower 
+            var t = (currentDistanceToMouseX - bufferZoneFromMouse) / rampUpDistance;
+            t = Mathf.Clamp01(t); // Ensure t is between 0 and 1
+            var currentSpeed = Mathf.Lerp(0, maxSpeed, t) * Time.deltaTime;
+            
+            // Move towards the exact mouse X position using MoveTowards, keeping Y and Z unchanged
+            var desiredX = Mathf.MoveTowards(_currentPosition.x, mouseX, currentSpeed);
+            // Clamp to scene boundaries
+            var newX = Mathf.Clamp(desiredX, leftEdge, rightEdge);
+            transform.position = new Vector3(newX, _currentPosition.y, _currentPosition.z);
+>>>>>>> Stashed changes
         }
     }
 }

@@ -1,42 +1,51 @@
 using System;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Audio
 {
     [RequireComponent(typeof(Slider))]
-    public class SliderAdjust : MonoBehaviour
+    public class AudioSlider : MonoBehaviour
     {
+        // The buses defined in FMOD
         private enum AudioBusType
         {
             Master,
             BackgroundMusic,
             Sfx
         }
-
-        [SerializeField] private AudioBusType busType;
+        // The slider that this script will control
         [SerializeField] private Slider slider;
+        // The bus that the slider will control 
+        [SerializeField] private AudioBusType bus;
+        // The default slider value
         [SerializeField] private float defaultValue = 0.5f;
 
         private void Start()
         {
             slider = GetComponent<Slider>();
-            if (slider != null)
-            {
-                slider.onValueChanged.AddListener(OnSliderValueChanged);
-                slider.value = defaultValue;
-            }
+            // Early exit when we cannot access the slider
+            if (!slider) return;
+            // Add the onValueChanged event to the slider
+            slider.onValueChanged.AddListener(OnSliderValueChanged);
+            // Set the default value
+            slider.value = defaultValue;
         }
 
         private void OnDestroy()
         {
-            if (slider != null)
-                slider.onValueChanged.RemoveListener(OnSliderValueChanged);
+            // Early exit when we cannot access the slider
+            if (!slider) return;
+            // Remove the onValueChanged event to the slider
+            slider.onValueChanged.RemoveListener(OnSliderValueChanged);
         }
 
         private void OnSliderValueChanged(float value)
         {
-            switch (busType)
+            // Triggered when the slider attached to this script is adjusted
+            // Delegate to the AudioManager functions, based on the bus, with the new slider value
+            switch (bus)
             {
                 case AudioBusType.Master:
                     AudioManager.SetMasterVolume(value);

@@ -1,47 +1,55 @@
-using Gameplay;
-using UnityEngine;
 using FMODUnity;
+using Gameplay;
+using Gameplay.Items;
+using Managers;
+using UnityEngine;
 
-namespace Audio
+namespace Audio.SFXs
 {
     [RequireComponent(typeof(Item))]
     public class ItemSfx : MonoBehaviour
     {
+        // FMOD Event References
         [SerializeField] private EventReference boxedClick;
         [SerializeField] private EventReference unBoxedClick;
         [SerializeField] private EventReference boxCollision;
         [SerializeField] private EventReference positiveBeep;
+
         [SerializeField] private EventReference negativeBeep;
+
+        // FMOD Params
         [SerializeField] private string collisionIntensityParameter = "collisionIntensity";
+
+        // Physics thresholds for playing sound effects
         [SerializeField] private float collisionForceThreshold = 0.1f;
         [SerializeField] private float maxForce = 10.0f;
-
         private Item _item;
 
         private void Start()
         {
             _item = GetComponent<Item>();
-            if (_item != null)
-            {
-                _item.OnUnboxed += PlayUnboxedSound;
-                _item.OnClickedBoxed += PlayBoxedSound;
-                _item.OnItemPositive += PlayPositiveSfx;
-                _item.OnItemNegative += PlayNegativeSfx;
-            }
+            // Early exit when we cannot access the item
+            if (!_item) return;
+            // Subscribe to the play events on the item 
+            _item.OnUnboxed += PlayUnboxedSound;
+            _item.OnClickedBoxed += PlayBoxedSound;
+            _item.OnItemPositive += PlayPositiveSfx;
+            _item.OnItemNegative += PlayNegativeSfx;
         }
 
         private void OnDestroy()
         {
-            if (_item != null)
-            {
-                _item.OnUnboxed -= PlayUnboxedSound;
-                _item.OnClickedBoxed -= PlayBoxedSound;
-            }
+            // Subscribe to the play events on the item 
+            if (_item == null) return;
+            // Unsubscribe from the play events on the item 
+            _item.OnUnboxed -= PlayUnboxedSound;
+            _item.OnClickedBoxed -= PlayBoxedSound;
         }
 
         private void PlayBoxedSound()
         {
-            if (AudioManager.Instance != null)
+            // If we have an audio instance, play the one shot
+            if (AudioManager.Instance)
             {
                 AudioManager.PlayOneShot(boxedClick);
             }
@@ -49,7 +57,8 @@ namespace Audio
 
         private void PlayUnboxedSound()
         {
-            if (AudioManager.Instance != null)
+            // If we have an audio instance, play the one shot
+            if (AudioManager.Instance)
             {
                 AudioManager.PlayOneShot(unBoxedClick);
             }
@@ -57,7 +66,8 @@ namespace Audio
 
         private void PlayPositiveSfx()
         {
-            if (AudioManager.Instance != null)
+            // If we have an audio instance, play the one shot
+            if (AudioManager.Instance)
             {
                 AudioManager.PlayOneShot(positiveBeep);
             }
@@ -65,7 +75,8 @@ namespace Audio
 
         private void PlayNegativeSfx()
         {
-            if (AudioManager.Instance != null)
+            // If we have an audio instance, play the one shot
+            if (AudioManager.Instance)
             {
                 AudioManager.PlayOneShot(negativeBeep);
             }
@@ -73,15 +84,13 @@ namespace Audio
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (AudioManager.Instance != null)
-            {
-                var collisionForce = collision.relativeVelocity.magnitude;
-                if (collisionForce > collisionForceThreshold)
-                {
-                    float normalizedForce = collisionForce / maxForce;
-                    AudioManager.PlayOneShot(boxCollision, collisionIntensityParameter, normalizedForce);
-                }
-            }
+            // Early exit when we cannot access the audio instance
+            if (!AudioManager.Instance) return;
+            var collisionForce = collision.relativeVelocity.magnitude;
+            // Exit when the collisionForce is less than the collisionForceThreshold
+            if (!(collisionForce > collisionForceThreshold)) return;
+            var normalizedForce = collisionForce / maxForce;
+            AudioManager.PlayOneShot(boxCollision, collisionIntensityParameter, normalizedForce);
         }
     }
 }

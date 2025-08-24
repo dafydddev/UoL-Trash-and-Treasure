@@ -1,7 +1,7 @@
 using Managers;
 using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Scene
 {
     public class FollowMouseX : MonoBehaviour
     {
@@ -43,8 +43,8 @@ namespace Gameplay
             if (!GameEvents.IsGameInProgress() || GameEvents.IsPaused()) return;
             
             // Get mouse x position in world space 
-            Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
-            float mouseX = mouseWorldPos.x;
+            var mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
+            var mouseX = mouseWorldPos.x;
 
             // Get the current sprite position
             _currentPosition = transform.position;

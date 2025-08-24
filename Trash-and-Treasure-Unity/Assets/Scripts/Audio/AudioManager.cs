@@ -47,11 +47,15 @@ namespace Audio
             SetSfxVolume(defaultLevel);
             // Subscribe to the OnPauseToggled GameEvent
             GameEvents.OnPauseToggled += HandlePause;
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
+=======
 >>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
         }
 
         private void OnDestroy()
         {
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
 <<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
             if (Instance == this)
             {
@@ -83,6 +87,10 @@ namespace Audio
             // Unsubscribe from the OnPauseToggled GameEvent
             GameEvents.OnPauseToggled -= HandlePause;
 >>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
+=======
+            // Unsubscribe from the OnPauseToggled GameEvent
+            GameEvents.OnPauseToggled -= HandlePause;
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
         }
         
         public void PlayMainMenuBackground()
@@ -103,6 +111,7 @@ namespace Audio
         private void PlaySceneAudio(EventReference eventReference)
         {
 <<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
             StopSceneAudio();
             if (!eventReference.IsNull)
             {
@@ -110,6 +119,8 @@ namespace Audio
                 _currentSceneAudio.start();
             }
 =======
+=======
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
             // Early exit if the eventReference is null
             if (eventReference.IsNull) return;
             // Stop and existing scene audio
@@ -124,12 +135,15 @@ namespace Audio
         public void StopSceneAudio()
         {
 <<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
             if (_currentSceneAudio.isValid())
             {
                 _currentSceneAudio.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 _currentSceneAudio.release();
             }
 =======
+=======
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
             // Early exit if the _currentSceneAudio is invalid
             if (!_currentSceneAudio.isValid()) return;
             // Stop the current scene audio
@@ -150,6 +164,7 @@ namespace Audio
         // Play a one-shot sound effect using eventReference and param
         public static void PlayOneShot(EventReference eventReference, string parameterName, float parameterValue)
         {
+<<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
 <<<<<<< Updated upstream:Trash-and-Treasure-Unity/Assets/Scripts/Audio/AudioManager.cs
             if (!eventReference.IsNull)
             {
@@ -187,6 +202,20 @@ namespace Audio
             }
         }
 
+=======
+            // Early exit if the eventReference is null
+            if (eventReference.IsNull) return;
+            // Play a one-shot sound effect using eventReference and param
+            EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+            // Set the param using the name and value
+            eventInstance.setParameterByName(parameterName, parameterValue);
+            // Start the event
+            eventInstance.start();
+            // Release the event instance
+            eventInstance.release();
+        }
+
+>>>>>>> Stashed changes:Trash-and-Treasure-Unity/Assets/Scripts/Managers/AudioManager.cs
 =======
             // Early exit if the eventReference is null
             if (eventReference.IsNull) return;

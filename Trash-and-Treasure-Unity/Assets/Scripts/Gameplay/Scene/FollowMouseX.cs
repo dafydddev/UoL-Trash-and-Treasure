@@ -1,5 +1,8 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 using Managers;
 >>>>>>> Stashed changes
@@ -44,12 +47,15 @@ namespace Gameplay
         private void Update()
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if (GameEvents.GetIsPaused() || !GameEvents.GetGameInProgress())
             {
                 return;
             }
 
 =======
+=======
+>>>>>>> Stashed changes
             // Early exit if the game is not in progress or is paused
             if (!GameEvents.IsGameInProgress() || GameEvents.IsPaused()) return;
             
@@ -71,6 +77,7 @@ namespace Gameplay
             float currentDistanceToMouseX = Mathf.Abs(_currentPosition.x - mouseX);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             // ONLY move if distance exceeds the threshold
             if (currentDistanceToMouseX > bufferZoneFromMouse)
             {
@@ -84,6 +91,8 @@ namespace Gameplay
                 transform.position = new Vector3(newX, _currentPosition.y, _currentPosition.z);
             }
 =======
+=======
+>>>>>>> Stashed changes
             // Exit when the distance is within the buffer zone (no movement needed)
             if (!(currentDistanceToMouseX > bufferZoneFromMouse)) return;
             

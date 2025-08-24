@@ -86,7 +86,6 @@ namespace Gameplay
             {
                 GameEvents.SetHasCompletedTutorial(true);
             }
-
         }
 
         private static void HandleGameStart()

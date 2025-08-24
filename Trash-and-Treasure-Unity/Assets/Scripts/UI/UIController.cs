@@ -74,40 +74,21 @@ namespace UI
 
         public void ReloadCurrentScene()
         {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-=======
             // Delegate to the Scenes Manager
             ScenesManager.ReloadCurrentScene();
->>>>>>> Stashed changes
-=======
-            // Delegate to the Scenes Manager
-            ScenesManager.ReloadCurrentScene();
->>>>>>> Stashed changes
         }
 
         private static void LoadSceneByReference(SceneReference sceneRef)
         {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+            // Log an error if we have attempted to load a scene without a valid reference
             if (sceneRef == null || string.IsNullOrEmpty(sceneRef.SceneName))
             {
                 Debug.LogError("SceneReference is null or missing name.");
                 return;
             }
 
+            // Delegate to the SceneManager to load the scene
             SceneManager.LoadScene(sceneRef.SceneName);
-=======
-            // Delegate to the Scenes Manager
-            ScenesManager.LoadSceneByReference(sceneRef);
-
->>>>>>> Stashed changes
-=======
-            // Delegate to the Scenes Manager
-            ScenesManager.LoadSceneByReference(sceneRef);
-
->>>>>>> Stashed changes
         }
 
         private void UpdateUI(UIPanel panel)

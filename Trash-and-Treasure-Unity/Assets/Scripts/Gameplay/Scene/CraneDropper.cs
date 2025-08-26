@@ -59,6 +59,8 @@ namespace Gameplay.Scene
             _animator = GetComponent<Animator>();
             // Set the initial drop timer
             _timeToNextDrop = PickNextDropTime();
+            // Set animation flag before triggering the initial drop animation
+            _isAnimating = true;
             // Trigger the initial drop animation
             _animator.SetTrigger(DropTriggerHash);
         }
@@ -105,9 +107,11 @@ namespace Gameplay.Scene
         // Called by animation event when drop animation is complete
         public void AnimationComplete()
         {
-            // Reset timer for next drop and clear the animation flag
-            _timeToNextDrop = PickNextDropTime();
+            // Clear the animation flag first
             _isAnimating = false;
+            // Reset timer for next drop
+            _timeToNextDrop = PickNextDropTime();
+            // Toggle the crane sprite
             ToggleCraneSprite();
             // Re-enable the fake item sprite
             _fakeSpriteRenderer.enabled = true;

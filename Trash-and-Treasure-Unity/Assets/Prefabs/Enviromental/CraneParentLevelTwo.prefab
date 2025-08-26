@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8782103410472798218
+--- !u!1001 &1748183657820180182
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2424685002719703191, guid: b04a5ca51771c4c3c8dd8637ea8ad7ce, type: 3}
+      propertyPath: rightEdgeXPosition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8349711528694339979, guid: b04a5ca51771c4c3c8dd8637ea8ad7ce, type: 3}
       propertyPath: m_Name
-      value: CraneParent
+      value: CraneParentLevelTwo
       objectReference: {fileID: 0}
     - target: {fileID: 8413968814771262770, guid: b04a5ca51771c4c3c8dd8637ea8ad7ce, type: 3}
       propertyPath: m_LocalPosition.x

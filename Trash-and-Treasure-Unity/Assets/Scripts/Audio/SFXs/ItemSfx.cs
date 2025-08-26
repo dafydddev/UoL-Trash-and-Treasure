@@ -44,6 +44,8 @@ namespace Audio.SFXs
             // Unsubscribe from the play events on the item 
             _item.OnUnboxed -= PlayUnboxedSound;
             _item.OnClickedBoxed -= PlayBoxedSound;
+            _item.OnItemPositive -= PlayPositiveSfx;
+            _item.OnItemNegative -= PlayNegativeSfx;
         }
 
         private void PlayBoxedSound()

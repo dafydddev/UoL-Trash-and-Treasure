@@ -47,6 +47,12 @@ namespace Gameplay.Items
             aimIndicator.transform.localScale = Vector3.one * 0.5f;
             aimIndicator.SetActive(false);
         }
+        
+        private void OnDestroy()
+        {
+            // Unsubscribe from pause events
+            GameEvents.OnPauseToggled -= HandlePause;
+        }
 
         private void Update()
         {

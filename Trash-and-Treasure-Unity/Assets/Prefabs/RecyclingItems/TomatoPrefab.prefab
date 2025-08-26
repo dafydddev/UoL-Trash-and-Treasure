@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TomatoPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5739907879593637272, guid: 3d3857fa6f7a34244871638ae9f669f6, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6443087585245616285, guid: 3d3857fa6f7a34244871638ae9f669f6, type: 3}
       propertyPath: m_Size.x
       value: 2.26

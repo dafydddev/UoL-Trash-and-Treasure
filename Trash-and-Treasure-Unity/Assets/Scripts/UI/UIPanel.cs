@@ -16,6 +16,11 @@ namespace UI
         // Called when adding the script or resetting it 
         private void Reset()
         {
+            // Only run in Editor mode and not during play mode
+            if (!Application.isEditor || Application.isPlaying)
+            {
+                return;
+            }
             // Delegate to SetupCanvas to make sure UIPanel elements have consistent settings
             SetupCanvas();
         }

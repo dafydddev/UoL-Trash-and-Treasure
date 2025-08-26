@@ -36,6 +36,11 @@ namespace Gameplay.Items
         [SerializeField] private float driftForce = 0.5f;
         // Velocity threshold below which drift force is applied
         [SerializeField] private float velocityThreshold = 0.1f;
+        
+        [Header("Item Physics Settings")]
+        // Easing applied to crusher logic
+        // If the item position is greater than this, we don't ever destroy it
+        [SerializeField] private float crusherEasing = -1.2f;
 
         [Header("Visual Components")]
         private SpriteRenderer _spriteRenderer;
@@ -237,7 +242,11 @@ namespace Gameplay.Items
         private void OnTriggerEnter2D(Collider2D col)
         {
             // Early exit if we entered a trigger that is *not* the death zone
-            if (col != _deathCollider) return;
+            if (col != _deathCollider) return; 
+            
+            // Give a little grace room for the player, so it doesn't feel unfair
+            
+            if (transform.position.y > crusherEasing) return;
             
             // Item fell into the death zone - lose a life
             GameEvents.OnLiveLost?.Invoke();

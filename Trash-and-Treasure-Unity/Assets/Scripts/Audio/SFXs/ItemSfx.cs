@@ -1,5 +1,4 @@
 using FMODUnity;
-using Gameplay;
 using Gameplay.Items;
 using Managers;
 using UnityEngine;

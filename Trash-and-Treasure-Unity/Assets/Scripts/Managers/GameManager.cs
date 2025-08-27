@@ -29,6 +29,7 @@ namespace Managers
             GameEvents.OnGameOver += HandleGameOver;
             GameEvents.OnLevelComplete += HandleLevelComplete;
             GameEvents.OnTutorialComplete += HandleTutorialComplete;
+            GameEvents.OnGameComplete += HandleGameComplete;
             // Subscribe to the SceneManager sceneLoaded event
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -43,6 +44,7 @@ namespace Managers
             GameEvents.OnGameOver -= HandleGameOver;
             GameEvents.OnLevelComplete -= HandleLevelComplete;
             GameEvents.OnTutorialComplete -= HandleTutorialComplete;
+            GameEvents.OnGameComplete -= HandleGameComplete;
             // Unsubscribe from the SceneManager sceneLoaded event
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
@@ -132,6 +134,12 @@ namespace Managers
         {
             // Set the tutorial as completed in the game state
             GameEvents.SetHasCompletedTutorial();
+        }
+
+        private static void HandleGameComplete()
+        {
+            // Set the game complete flag in the game state
+            GameEvents.SetHasCompletedGame();
         }
     }
 }

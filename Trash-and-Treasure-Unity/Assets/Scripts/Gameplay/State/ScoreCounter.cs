@@ -1,7 +1,7 @@
 using Managers;
 using UnityEngine;
 
-namespace Gameplay.Score
+namespace Gameplay.State
 {
     public class ScoreCounter : MonoBehaviour
     {

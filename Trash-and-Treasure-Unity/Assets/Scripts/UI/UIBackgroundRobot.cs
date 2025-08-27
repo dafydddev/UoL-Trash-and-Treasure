@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace UI
@@ -18,6 +19,9 @@ namespace UI
 
         // Sprite renderer used to show the item being carried
         [SerializeField] private SpriteRenderer itemCarryingRenderer;
+        
+        // Sprite renderer for the crown when completed game
+        [SerializeField] private SpriteRenderer crownRenderer;
 
         // Safe spaces outside the screen, where the robot is fully off the screen
         [SerializeField] private float leftEdgeXPosition = -380;
@@ -33,8 +37,11 @@ namespace UI
 
         // Sprite renderer used to show the robot itself (used to flip the sprite)
         private SpriteRenderer _robotSpriteRender;
+        
         // Data member for the itemCarryingRenderer, see above
         private SpriteRenderer _itemCarryingRenderer;
+        // Data member for the crownRenderer, see above
+        private SpriteRenderer _crownRenderer;
         
         // Run variables (row, time, speed, direction and state)
         private int _row;
@@ -49,6 +56,10 @@ namespace UI
             _robotSpriteRender = GetComponent<SpriteRenderer>();
             // Get the sprite renderer for the item being carried
             _itemCarryingRenderer = itemCarryingRenderer;
+            // Get the sprite renderer for the crown
+            _crownRenderer = crownRenderer;
+            // Enable the crown if the player has completed the game
+            _crownRenderer.gameObject.SetActive(GameEvents.GetHasCompletedGame());
             // Trigger the first run
             TriggerNewRun();
         }

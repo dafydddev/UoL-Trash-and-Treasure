@@ -175,8 +175,9 @@ MonoBehaviour:
   type: 0
   scoreValue: 10
   shrinkSpeed: 0.05
-  driftForce: 0.75
+  driftForce: 0.71
   velocityThreshold: 0.1
+  crusherEasing: -1.2
   boxedSprite: {fileID: 8209512313543226067, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
   unboxedSprite: {fileID: 1160841906683709888, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
   unboxParticle: {fileID: 6639546548904000456}

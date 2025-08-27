@@ -81,6 +81,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8094557293869428969, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
     - target: {fileID: 7983498402150960609, guid: b09e23eb1df494f54ad5920a770a776c, type: 3}
+      propertyPath: driftForce
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983498402150960609, guid: b09e23eb1df494f54ad5920a770a776c, type: 3}
       propertyPath: boxedSprite
       value: 
       objectReference: {fileID: 1952600279677194792, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}

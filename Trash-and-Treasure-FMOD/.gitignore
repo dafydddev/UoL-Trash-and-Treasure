@@ -1,5 +1,4 @@
 # FMOD Studio cache and build folders
-
 *.cache/
 Temp/
 *.tmp
@@ -9,29 +8,25 @@ Mobile/
 Web/
 
 # Generated banks (generate them outside version control)
-
 *.bank
-*.fspro.user
-*.xml
-*.json
-*.wav
-*.aiff
 
 # Ignore user-specific config files
-
+*.fspro.user
 *.user
 *.userprefs
-*.pidb
-*.booproj
 
 # Ignore log files
-
 *.log
 
 # Ignore FMOD Studio project backup files
-
 *.backup
 
-# Ignore FMOD generated audio banks build info files
-
+# Ignore specific build info files
 Build/FMODBankInfo.json
+
+# Track source audio files and project data
+!*.wav
+!*.aiff
+!*.ogg
+!*.mp3
+!Metadata/

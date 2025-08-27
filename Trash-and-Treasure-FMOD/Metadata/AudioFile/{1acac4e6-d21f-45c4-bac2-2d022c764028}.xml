@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{1acac4e6-d21f-45c4-bac2-2d022c764028}">
+		<property name="assetPath">
+			<value>Cardboard_Box.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.70269841269841271</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b598f47-3347-494b-8727-92ab949c066c}</destination>
+		</relationship>
+	</object>
+</objects>

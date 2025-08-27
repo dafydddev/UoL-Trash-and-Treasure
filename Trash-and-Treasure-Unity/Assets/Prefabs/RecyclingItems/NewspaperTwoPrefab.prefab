@@ -17,6 +17,10 @@ PrefabInstance:
       value: NewspaperTwoPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 4518186018511026164, guid: f33593b1639a544a3afe1297e9d39df3, type: 3}
+      propertyPath: driftForce
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518186018511026164, guid: f33593b1639a544a3afe1297e9d39df3, type: 3}
       propertyPath: unboxedSprite
       value: 
       objectReference: {fileID: -8232819901003445097, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}

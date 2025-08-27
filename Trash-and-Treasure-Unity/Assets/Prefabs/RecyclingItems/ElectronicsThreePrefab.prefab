@@ -72,9 +72,17 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -8944063869258166600, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+    - target: {fileID: 6437874297320943147, guid: ae36d28dea3a24f4c8cff836264ec5c5, type: 3}
+      propertyPath: m_Mass
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6883736246166732664, guid: ae36d28dea3a24f4c8cff836264ec5c5, type: 3}
       propertyPath: m_Name
       value: ElectronicsThreePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9112902261741180706, guid: ae36d28dea3a24f4c8cff836264ec5c5, type: 3}
+      propertyPath: driftForce
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 9112902261741180706, guid: ae36d28dea3a24f4c8cff836264ec5c5, type: 3}
       propertyPath: unboxedSprite

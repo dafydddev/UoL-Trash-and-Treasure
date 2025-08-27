@@ -9,12 +9,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 98355177426908318, guid: e07f3bd414a32474193801e6775b7792, type: 3}
+      propertyPath: driftForce
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 98355177426908318, guid: e07f3bd414a32474193801e6775b7792, type: 3}
       propertyPath: unboxedSprite
       value: 
       objectReference: {fileID: -8392801305830142616, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
     - target: {fileID: 2354560671108668612, guid: e07f3bd414a32474193801e6775b7792, type: 3}
       propertyPath: m_Name
       value: ElectronicsTwoPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773383116211391895, guid: e07f3bd414a32474193801e6775b7792, type: 3}
+      propertyPath: m_Mass
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3512601600348070034, guid: e07f3bd414a32474193801e6775b7792, type: 3}
       propertyPath: m_Sprite

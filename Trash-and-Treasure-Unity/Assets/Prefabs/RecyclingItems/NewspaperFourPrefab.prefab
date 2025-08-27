@@ -77,6 +77,10 @@ PrefabInstance:
       value: 0.56078434
       objectReference: {fileID: 0}
     - target: {fileID: 4746604780365132828, guid: ef66f88c6451d4711bdc6d81470e070f, type: 3}
+      propertyPath: driftForce
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746604780365132828, guid: ef66f88c6451d4711bdc6d81470e070f, type: 3}
       propertyPath: unboxedSprite
       value: 
       objectReference: {fileID: 1986481842797971617, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}

@@ -289,7 +289,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4073123230645506464, guid: 91805aefb5aa24ba4be6a49d256dd437, type: 3}
       propertyPath: m_Name
-      value: CraneParentLevelNine (1)
+      value: CraneParentLevelNine
       objectReference: {fileID: 0}
     - target: {fileID: 4585488591172197657, guid: 91805aefb5aa24ba4be6a49d256dd437, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1158,7 +1158,6 @@ GameObject:
   - component: {fileID: 196438408}
   - component: {fileID: 196438407}
   - component: {fileID: 196438409}
-  - component: {fileID: 196438410}
   m_Layer: 0
   m_Name: ConveyorBeltGraphic
   m_TagString: Untagged
@@ -1282,19 +1281,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 20, y: 0.8}
   m_EdgeRadius: 0
---- !u!114 &196438410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196438406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8c6cb382b5640638f38c56dc1509db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallType: 1
 --- !u!1 &205508333
 GameObject:
   m_ObjectHideFlags: 0
@@ -6660,7 +6646,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1434466136708480098, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
       propertyPath: m_Name
-      value: LeftCrusher
+      value: MiddleCrusher
       objectReference: {fileID: 0}
     - target: {fileID: 2019388446695692733, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8165,7 +8151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1127556310033305327, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_Name
-      value: RightBasket
+      value: LeftBasket
       objectReference: {fileID: 0}
     - target: {fileID: 1960409761520477048, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_Color.b
@@ -8357,7 +8343,7 @@ MonoBehaviour:
   quoteText: {fileID: 2025454642}
   levelWinQuotes:
   - Good job!
-  - Wow! Amazing!
+  - Amazing!
   - We did it!
   - Fantastic!
   - Yay!
@@ -9181,7 +9167,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1434466136708480098, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
       propertyPath: m_Name
-      value: LeftCrusher (1)
+      value: LeftCrusher
       objectReference: {fileID: 0}
     - target: {fileID: 2019388446695692733, guid: f9ce25c618a4e445abb2ba4c3d95a4fc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10262,7 +10248,6 @@ GameObject:
   - component: {fileID: 2003645822}
   - component: {fileID: 2003645821}
   - component: {fileID: 2003645820}
-  - component: {fileID: 2003645819}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -10285,19 +10270,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1075795983}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2003645819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003645817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8c6cb382b5640638f38c56dc1509db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallType: 0
 --- !u!61 &2003645820
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10933,7 +10905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1127556310033305327, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_Name
-      value: LeftBasket
+      value: RightBasket
       objectReference: {fileID: 0}
     - target: {fileID: 1960409761520477048, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_Color.b
@@ -11022,6 +10994,10 @@ PrefabInstance:
     - target: {fileID: 5921309599377550951, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869551491045853893, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6869551491045853893, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_Enabled
@@ -11248,9 +11224,9 @@ SceneRoots:
   - {fileID: 3461314606924749639}
   - {fileID: 8871467}
   - {fileID: 312126633}
-  - {fileID: 985439647}
-  - {fileID: 2067724917}
   - {fileID: 1532670163}
-  - {fileID: 1694330903}
-  - {fileID: 1249656223}
+  - {fileID: 2067724917}
   - {fileID: 1879651410}
+  - {fileID: 1249656223}
+  - {fileID: 1694330903}
+  - {fileID: 985439647}

@@ -1149,7 +1149,6 @@ GameObject:
   - component: {fileID: 178044166}
   - component: {fileID: 178044165}
   - component: {fileID: 178044164}
-  - component: {fileID: 178044163}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -1172,19 +1171,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 350071697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &178044163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178044161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8c6cb382b5640638f38c56dc1509db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallType: 0
 --- !u!61 &178044164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1334,7 +1320,6 @@ GameObject:
   - component: {fileID: 196438408}
   - component: {fileID: 196438407}
   - component: {fileID: 196438409}
-  - component: {fileID: 196438410}
   m_Layer: 0
   m_Name: ConveyorBeltGraphic
   m_TagString: Untagged
@@ -1458,19 +1443,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 20, y: 0.8}
   m_EdgeRadius: 0
---- !u!114 &196438410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196438406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8c6cb382b5640638f38c56dc1509db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallType: 1
 --- !u!1 &205508333
 GameObject:
   m_ObjectHideFlags: 0
@@ -8310,7 +8282,7 @@ MonoBehaviour:
   quoteText: {fileID: 2025454642}
   levelWinQuotes:
   - Good job!
-  - Wow! Amazing!
+  - Amazing!
   - We did it!
   - Fantastic!
   - Yay!

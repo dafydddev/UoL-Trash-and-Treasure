@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{4b272148-4e71-46dc-b885-1c23c798a4e8}">
+		<property name="assetPath">
+			<value>Time_Warning.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.04</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b598f47-3347-494b-8727-92ab949c066c}</destination>
+		</relationship>
+	</object>
+</objects>

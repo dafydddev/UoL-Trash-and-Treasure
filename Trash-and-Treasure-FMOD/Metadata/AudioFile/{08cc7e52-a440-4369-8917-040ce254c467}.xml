@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{08cc7e52-a440-4369-8917-040ce254c467}">
+		<property name="assetPath">
+			<value>Gameplay_Background_Jingle.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>104.352</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b598f47-3347-494b-8727-92ab949c066c}</destination>
+		</relationship>
+	</object>
+</objects>

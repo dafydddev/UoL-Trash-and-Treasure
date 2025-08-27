@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{8f8b40d5-5679-451a-818b-3c56c75ff6c2}">
+		<property name="name">
+			<value>collisionIntensity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e3109d89-3e4c-4636-9bab-ac158e834ebb}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{dab0593d-18f2-4662-b849-90a10824073b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{dab0593d-18f2-4662-b849-90a10824073b}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

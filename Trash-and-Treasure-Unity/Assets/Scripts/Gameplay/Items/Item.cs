@@ -240,12 +240,14 @@ namespace Gameplay.Items
 
         // Handle item falling into the death zone
         private void OnTriggerEnter2D(Collider2D col)
-        {
+        {   
+            // Early exit if we cannot access the death collider
+            if (!_deathCollider) return; 
+            
             // Early exit if we entered a trigger that is *not* the death zone
             if (col != _deathCollider) return; 
             
             // Give a little grace room for the player, so it doesn't feel unfair
-            
             if (transform.position.y > crusherEasing) return;
             
             // Item fell into the death zone - lose a life

@@ -10,11 +10,13 @@ namespace Tutorial
         [SerializeField] private UIController uiController;
         // Reference to the tutorial panel in the scene
         [SerializeField] private UIPanel tutorialPanel;
-
+        // Bool for whether users are forced to access the tutorial
+        [SerializeField] private bool forceTutorial = false;
+        
         public void OnClickTutorialCheck()
         {
             // If the tutorial has not been completed, show the tutorial panel
-            if (!GameEvents.GetHasCompletedTutorial())
+            if (!GameEvents.GetHasCompletedTutorial() && forceTutorial)
             {
                 if (tutorialPanel != null && uiController != null)
                 {

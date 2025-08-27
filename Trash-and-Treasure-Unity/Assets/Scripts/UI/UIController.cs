@@ -23,6 +23,10 @@ namespace UI
 
         // The previous scene (e.g. Level 1 -> Main Menu) for when UI wants the previous scene
         [SerializeField] private SceneReference previousScene;
+        
+        // The scene players will return to if they game over based on their progress
+        // e.g. level 2 returns to level 1, level 4 returns to level 3
+        [SerializeField] private SceneReference retryScene;
 
         private void Awake()
         {
@@ -88,8 +92,14 @@ namespace UI
 
         public void ReloadCurrentScene()
         {
-            // Delegate to the Scenes Manager
+            // Delegate to the Scenes Manager to reload the current scene
             ScenesManager.ReloadCurrentScene();
+        }
+        
+        public void LoadRetryScene()
+        {
+            // Delegate to the Scenes Manager to load the retry scene
+            ScenesManager.LoadSceneByReference(retryScene);
         }
 
         private static void LoadSceneByReference(SceneReference sceneRef)

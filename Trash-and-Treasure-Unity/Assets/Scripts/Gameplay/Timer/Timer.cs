@@ -1,15 +1,17 @@
+using Audio.SFXs;
 using Managers;
 using UnityEngine;
 
 namespace Gameplay.Timer
 {
     [RequireComponent(typeof(TMPro.TMP_Text))]
+    [RequireComponent(typeof(TimerSfx))]
     public class Timer : MonoBehaviour
     {
         [SerializeField] private float endTime;
 
         // Start time for the timer
-        [SerializeField] private float startTime = 100f;
+        [SerializeField] private float startTime = 60f;
 
         // Colour to display when the time is in the normal state
         [SerializeField] private Color normalColor = Color.white;
@@ -36,6 +38,9 @@ namespace Gameplay.Timer
 
         // Current timer state
         private TimerState _timerState;
+        
+        // Reference to the TimerSfx component
+        private TimerSfx _timerSfx;
 
         // Label prefix for the timer display
         private const string LabelPrefix = "Time: ";
@@ -58,6 +63,8 @@ namespace Gameplay.Timer
             _time = startTime;
             // Get the text component for displaying the timer
             _timerText = GetComponent<TMPro.TMP_Text>();
+            // Get the TimerSfx component
+            _timerSfx = GetComponent<TimerSfx>();
             // Set the initial timer text display
             UpdateTimerText();
             // Set the initial colour to normal
@@ -73,15 +80,7 @@ namespace Gameplay.Timer
 
             // Decrement the timer
             _time -= Time.deltaTime;
-
-            // Check for game over
-            if (_time <= 0)
-            {
-                // If the timer is less than or equal to zero, trigger the game over
-                TriggerGameOver();
-                return;
-            }
-
+            
             // Only update the UI when the displayed time actually changes
             var currentDisplayTime = Mathf.FloorToInt(_time);
             if (currentDisplayTime != _lastDisplayedTime)
@@ -91,7 +90,15 @@ namespace Gameplay.Timer
             }
 
             // Update the timer colour (only changes when state transitions occur)
-            UpdateTimerColor();
+            UpdateTimerState();
+            
+            // Check for game over
+            if (_time <= endTime)
+            {
+                // If the timer is less than or equal to zero, trigger the game over
+                TriggerGameOver();
+                return;
+            }
         }
 
         private void TriggerGameOver()
@@ -108,13 +115,15 @@ namespace Gameplay.Timer
             _timerText.text = LabelPrefix + _time.ToString("0");
         }
 
-        private void UpdateTimerColor()
+        private void UpdateTimerState()
         {
             // Change to critical colour when time is critically low
             if (_time <= criticalThreshold && _timerState != TimerState.Critical)
             {
                 _timerText.color = criticalColor;
                 _timerState = TimerState.Critical;
+                _timerSfx?.PlayTimeWarningSfx();
+
             }
             // Change to warning colour when time is getting low
             else if (_time <= warningThreshold && _time > criticalThreshold && _timerState != TimerState.Warning)

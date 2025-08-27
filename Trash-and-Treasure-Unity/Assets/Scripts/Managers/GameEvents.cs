@@ -1,12 +1,17 @@
+using UnityEngine;
+
 namespace Managers
 {
     public static class GameEvents
     {
-        // For whether the game is paused
+        // Flag for whether the game is paused
         private static bool _isPaused;
 
         // Flag for whether we have completed the tutorial 
         private static bool _hasCompletedTutorial;
+        
+        // Flag for whether we have completed the game
+        private static bool _hasCompletedGame;
 
         // Gameplay States
         private enum GameState
@@ -25,6 +30,7 @@ namespace Managers
         public static System.Action<bool> OnPauseToggled;
         public static System.Action OnTutorialComplete;
         public static System.Action OnLevelComplete;
+        public static System.Action OnGameComplete;
         public static System.Action OnLiveLost;
         public static System.Action<int> OnScoreChanged;
 
@@ -100,6 +106,18 @@ namespace Managers
         {
             // Mark the tutorial as completed
             _hasCompletedTutorial = true;
+        }
+        
+        public static void SetHasCompletedGame()
+        {
+            // Mark the game as completed
+            _hasCompletedGame = true;
+        }
+        
+        public static bool GetHasCompletedGame()
+        {
+            // Return whether the game has been completed
+            return _hasCompletedGame;
         }
 
         public static void DecrementLives()

@@ -89,6 +89,10 @@ PrefabInstance:
       value: NewspaperFourPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 7421711344616131861, guid: ef66f88c6451d4711bdc6d81470e070f, type: 3}
+      propertyPath: m_Mass
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421711344616131861, guid: ef66f88c6451d4711bdc6d81470e070f, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}

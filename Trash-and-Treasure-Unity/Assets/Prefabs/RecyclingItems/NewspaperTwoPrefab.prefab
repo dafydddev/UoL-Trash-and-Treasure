@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -8232819901003445097, guid: 78e850c40e9234431bcbfcc2c9a5c37b, type: 3}
+    - target: {fileID: 1843017872851144445, guid: f33593b1639a544a3afe1297e9d39df3, type: 3}
+      propertyPath: m_Mass
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2252833118420213678, guid: f33593b1639a544a3afe1297e9d39df3, type: 3}
       propertyPath: m_Name
       value: NewspaperTwoPrefab

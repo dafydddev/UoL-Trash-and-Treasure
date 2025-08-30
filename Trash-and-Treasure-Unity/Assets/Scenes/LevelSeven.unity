@@ -5172,10 +5172,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -8079,7 +8079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5534299609138998137, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 5534299609138998137, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8127,6 +8127,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6869551491045853893, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689076180586064741, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891339397216919950, guid: a3cf15322600a4bebafc88f959bc1d24, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

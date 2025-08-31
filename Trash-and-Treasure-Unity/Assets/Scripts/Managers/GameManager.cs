@@ -53,6 +53,8 @@ namespace Managers
         {
             // Early exit if the user is not pressing escape
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
+            // Early exit if the game is not in progress
+            if (!GameEvents.IsGameInProgress()) return;
             // Set the newPauseState to inverse of the current IsPaused
             var newPauseState = !GameEvents.IsPaused();
             // Invoke the GameEvents OnPauseToggled event with the new state

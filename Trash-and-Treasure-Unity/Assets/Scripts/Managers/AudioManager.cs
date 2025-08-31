@@ -161,6 +161,17 @@ namespace Managers
         {
             _studioSystem.setParameterByName(parameterName, value);
         }
+        
+        // Reset a global parameter value
+        private void ResetGlobalParameter(string parameterName)
+        {
+            _studioSystem.setParameterByName(parameterName, 0.0f);
+        }
+
+        public void ResetPauseParameter()
+        {
+            ResetGlobalParameter(PauseParameter);
+        }
 
         private void HandlePause(bool isPaused)
         {

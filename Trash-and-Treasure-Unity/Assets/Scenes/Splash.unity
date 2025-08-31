@@ -826,14 +826,14 @@ MonoBehaviour:
       Data2: 1200588562
       Data3: 122683520
       Data4: 820750495
-    Path: event:/Music/BackgroundMusic
+    Path: event:/Music/GameplayBackground
   gameStateJingle:
     Guid:
       Data1: -1106396932
       Data2: 1122655004
       Data3: -2001770587
       Data4: 1084083930
-    Path: event:/Music/GameStateChange
+    Path: event:/Music/LeveEndTransition
 --- !u!4 &1536725230
 Transform:
   m_ObjectHideFlags: 0

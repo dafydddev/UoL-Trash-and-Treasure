@@ -60,6 +60,7 @@ namespace Managers
             else
             {
                 // If we are in the main menu, play the main menu background music
+                AudioManager.Instance.ResetPauseParameter();
                 AudioManager.Instance.PlayMainMenuBackground();
             }
         }

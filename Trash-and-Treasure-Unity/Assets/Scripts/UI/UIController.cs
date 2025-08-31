@@ -48,6 +48,8 @@ namespace UI
 
         public void PauseGame(bool shouldPause)
         {
+            // Early exit if the game is not in progress
+            if (!GameEvents.IsGameInProgress()) return;
             // Invoke the pause event (logic in the Game Manager)
             GameEvents.OnPauseToggled?.Invoke(shouldPause);
         }

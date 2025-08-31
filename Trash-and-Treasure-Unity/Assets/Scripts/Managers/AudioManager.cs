@@ -37,13 +37,25 @@ namespace Managers
             else
             {
                 Destroy(gameObject);
+                // Important: exit early if destroying this instance
+                return;
             }
 
             // Initialize FMOD Studio
             _studioSystem = RuntimeManager.StudioSystem;
-            SetBackgroundMusicVolume(defaultLevel);
-            SetMasterVolume(defaultLevel);
-            SetSfxVolume(defaultLevel);
+    
+            // Try to set volumes with error handling
+            try
+            {
+                SetBackgroundMusicVolume(defaultLevel);
+                SetMasterVolume(defaultLevel);
+                SetSfxVolume(defaultLevel);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"Failed to set initial audio volumes: {e.Message}");
+            }
+    
             // Subscribe to the OnPauseToggled GameEvent
             GameEvents.OnPauseToggled += HandlePause;
         }
@@ -135,7 +147,7 @@ namespace Managers
         // Set the volume for the background music bus
         public static void SetBackgroundMusicVolume(float volume)
         {
-            SetBusVolume("bus:/BackgroundMusic", volume);
+            SetBusVolume("bus:/Music", volume);
         }
 
         // Set the volume for the SFX bus
@@ -152,7 +164,8 @@ namespace Managers
 
         private void HandlePause(bool isPaused)
         {
-            SetGlobalParameter(PauseParameter, isPaused ? 1.0f : 0.0f);
+            var paramValue = isPaused ? 1.0f : 0.0f;
+            SetGlobalParameter(PauseParameter, paramValue);
         }
     }
 }

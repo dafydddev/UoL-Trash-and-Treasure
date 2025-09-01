@@ -988,7 +988,7 @@ GameObject:
   - component: {fileID: 1718027681}
   - component: {fileID: 1718027680}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CallToActionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,7 +1010,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -120}
+  m_AnchoredPosition: {x: 0, y: -140}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718027680
@@ -1035,8 +1035,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Click to start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc396e73689ed43608e947a3f1e8d397, type: 2}
-  m_sharedMaterial: {fileID: 6408627111482748918, guid: cc396e73689ed43608e947a3f1e8d397, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc08b6bcf471c41df872e6d9a6e4501c, type: 2}
+  m_sharedMaterial: {fileID: 6190905061980234255, guid: fc08b6bcf471c41df872e6d9a6e4501c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1060,8 +1060,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
